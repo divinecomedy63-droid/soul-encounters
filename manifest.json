@@ -1,11 +1,11 @@
 {
-  "name": "Soul Encounters - 13-Week Journey",
+  "name": "Soul Encounters: A Reliquary of Psychological-Spiritual Integration",
   "short_name": "Soul Encounters",
-  "description": "A transformative 13-week spiritual journey integrating psychology, spirituality, and personal growth",
-  "start_url": "/soul-encounters/",
+  "description": "A 13-week contemplative journey integrating psychology and spirituality through eight sacred practices.",
+  "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#667eea",
+  "background_color": "#1a1510",
+  "theme_color": "#1a1510",
   "orientation": "portrait",
   "icons": [
     {
