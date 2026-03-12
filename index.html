@@ -652,10 +652,11 @@ body {
   color: var(--parchment-dim);
   text-align: center;
   line-height: 1.65;
-  max-width: 360px;
+  max-width: 480px;
   margin: 28px auto 0;
-  padding: 0 12px;
+  padding: 0 16px;
   letter-spacing: 0.02em;
+  overflow-wrap: break-word;
   animation: fadeUp 1.5s ease-out 0.9s both;
 }
 
@@ -684,7 +685,7 @@ body {
 }
 
 .progress-week .lantern-flame {
-  font-size: 1.1em;
+  font-size: 2.2em;
   line-height: 1;
   opacity: 0.22;
   transition: all 0.3s ease;
@@ -720,7 +721,7 @@ body {
 .progress-week.current .lantern-flame {
   opacity: 1;
   filter: grayscale(0) drop-shadow(0 0 4px rgba(255,200,80,0.7));
-  font-size: 1.35em;
+  font-size: 2.7em;
   animation: flicker 2.5s ease-in-out infinite;
 }
 
@@ -735,14 +736,14 @@ body {
   50%       { filter: grayscale(0) drop-shadow(0 0 8px rgba(255,200,80,0.95)); }
 }
 
+@media (max-width: 480px) {
+  .progress-week .lantern-flame { font-size: 1.3em !important; }
+  .progress-week.current .lantern-flame { font-size: 1.6em !important; }
+  .progress-week { padding: 2px 1px; }
+}
+
 .progress-label {
-  font-family: 'Philosopher', sans-serif;
-  font-size: 0.8em;
-  letter-spacing: 0.08em;
-  color: var(--parchment-dim);
-  width: 100%;
-  text-align: center;
-  margin-top: 6px;
+  display: none;
 }
 
 /* Octave Ring (8 practices in a circle) */
@@ -2715,7 +2716,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<strong>Psalm 42:1-2</strong><br>"As the deer pants for streams of water, so my soul pants for you, God. My soul thirsts for God, for the living God."<br><br><div class="quote">"This opening psalm captures the essential spiritual condition that initiates all authentic soul work - the recognition of a deep, abiding thirst that cannot be satisfied by ordinary means." - Thomas Merton</div><br>Research in neuroplasticity shows that acknowledging spiritual longing activates brain pathways associated with meaning-making and transcendent experience (Aten, et al., 2012). Open the full Psalm (the major translations are available free online). Spend 10 minutes in "lectio divina" with this psalm, allowing each verse to enter your imagination and settle in your consciousness.`
+                        content: `<strong>Psalm 42:1-2</strong><br>"As the deer pants for streams of water, so my soul pants for you, God. My soul thirsts for God, for the living God."<br><br><div class="quote">"This opening psalm captures the essential spiritual condition of authentic soul work — the recognition of a deep, abiding thirst that cannot be satisfied by ordinary means." — Thomas Merton</div><br><br><em>Lectio Divina — Read aloud, slowly, three times:</em><br>First reading: receive the words.<br>Second reading: notice which phrase stirs you.<br>Third reading: rest in silence with that phrase. Let it pray you.`
                     },
                     wisdom: {
                         icon: "🎓",
@@ -2763,7 +2764,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<strong>Psalm 139:7-10</strong><br>"Where can I go from your Spirit? Where can I flee from your presence? If I go up to the heavens, you are there; if I make my bed in the depths, you are there."<br><br><div class="quote">"The spiritual call is not about going somewhere else, but about recognizing the Sacred that has always been calling to us from exactly where we are." - Parker Palmer</div><br>Message Bible translator Eugene Peterson once commented in his spirituality class, "There is nothing we do that does not affect the way we hear God's call." From other fields of study such as psychological sciences we know that accepting rather than resisting life's invitations often activates the parasympathetic nervous system and enhances cognitive flexibility (Porges, 2011). This week's psalm suggests that each moment may contain a calling, every experience an invitation from the Sacred.`
+                        content: `<strong>Psalm 131:1-3</strong><br>"O LORD, my heart is not lifted up, my eyes are not raised too high; I do not occupy myself with things too great and too marvelous for me. But I have calmed and quieted my soul, like a weaned child with its mother; my soul is like the weaned child that is with me. O Israel, hope in the LORD from this time on and forevermore."<br><br><div class="quote">"All shall be well, and all shall be well, and all manner of thing shall be well." — Julian of Norwich</div><br><br><em>Lectio Divina — Read aloud, slowly, three times:</em><br>First reading: receive the words.<br>Second reading: notice which phrase stirs you.<br>Third reading: rest in silence with that phrase. Let it pray you.`
                     },
                     wisdom: {
                         icon: "🎓",
@@ -2811,7 +2812,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<strong>Psalm 23:4</strong><br>"Even though I walk through the darkest valley, I will fear no evil, for you are with me; your rod and your staff, they comfort me."<br><br><div class="quote">"The valley of the shadow is not a detour around the spiritual life - it is the spiritual life. Every authentic spiritual journey leads through the places we'd rather avoid." - Richard Rohr</div><br> Siegel (2020) shows that acknowledging and working with psychological resistance rather than bypassing it leads to more sustainable spiritual growth and psychological integration. The psalm doesn't promise to avoid the dark valley but to be accompanied through it. Take 5-10 minutes meditating on the rich metaphors of this Psalm. How does Psalm 23 touch on various experiences in your own 'dark valley'?`
+                        content: `<strong>Psalm 22:1-2</strong><br>"My God, my God, why have you forsaken me? Why are you so far from helping me, from the words of my groaning? O my God, I cry by day, but you do not answer; and by night, but find no rest."<br><br><div class="quote">"The cry of desolation is itself a form of prayer — the soul refusing to pretend, speaking its truth to God without ornament or armor." — Henri Nouwen</div><br><br><em>Lectio Divina — Read aloud, slowly, three times:</em><br>First reading: receive the words.<br>Second reading: notice which phrase stirs you.<br>Third reading: rest in silence with that phrase. Let it pray you.`
                     },
                     wisdom: {
                         icon: "🎓",
@@ -2859,7 +2860,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<strong>Psalm 31:24</strong><br>"Be strong and take heart, all you who hope in the Lord."<br><br><div class="quote">"Spiritual discipline is not about perfection but about showing up consistently to what matters most, especially when we don't feel like it." - Henri Nouwen</div><br>Damasio (2018) shows that commitment to spiritual practices literally rewires the brain, strengthening neural pathways associated with attention, emotional regulation, and self-compassion. The warrior's strength isn't aggression but the sustained courage to choose love when it's difficult.`
+                        content: `<strong>Psalm 144:1-2</strong><br>"Blessed be the LORD, my rock, who trains my hands for war, and my fingers for battle; my rock and my fortress, my stronghold and my deliverer, my shield, in whom I take refuge, who subdues the peoples under me."<br><br><div class="quote">"The spiritual warrior does not fight for personal gain, but for the greater glory of God and the service of souls." — Ignatius of Loyola</div><br><br><em>Lectio Divina — Read aloud, slowly, three times:</em><br>First reading: receive the words.<br>Second reading: notice which phrase stirs you.<br>Third reading: rest in silence with that phrase. Let it pray you.`
                     },
                     wisdom: {
                         icon: "🎓",
@@ -2907,7 +2908,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<strong>Psalm 130:1</strong><br>"Out of the depths I cry to you, Lord."<br><br><div class="quote">"The mystic's journey requires a willingness to descend into the depths where God is found not in answers but in mystery itself." - Meister Eckhart</div><br>Recent research shows that mystical experiences often emerge during periods of psychological descent or spiritual emptying. The psalm's "depths" represent not despair but the profound ground where surface identity dissolves and authentic encounter becomes possible.`
+                        content: `<strong>Psalm 45:1-2</strong><br>"My heart overflows with a goodly theme; I address my verses to the king; my tongue is like the pen of a ready scribe. You are the most handsome of men; grace is poured upon your lips; therefore God has blessed you forever."<br><br><div class="quote">"Love is sufficient of itself — it is its own merit, its own reward. Love needs no cause beyond itself, nor does it demand fruits; it is its own purpose." — Bernard of Clairvaux</div><br><br><em>Lectio Divina — Read aloud, slowly, three times:</em><br>First reading: receive the words.<br>Second reading: notice which phrase stirs you.<br>Third reading: rest in silence with that phrase. Let it pray you.`
                     },
                     wisdom: {
                         icon: "🎓",
@@ -2955,7 +2956,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<strong>Psalm 147:3</strong><br>"He heals the brokenhearted and binds up their wounds."<br><br><div class="quote">"The word 'heal' comes from the same root as 'whole' and 'holy.' Healing is not about fixing what's broken but discovering the sacred completeness that has never been damaged." - Caroline Myss</div><br>Siegel (2020) shows that spiritual practices activate the body's natural healing mechanisms, including enhanced immune function and neuroplasticity. True healing recognizes that our wounds often become our greatest sources of wisdom and compassion.`
+                        content: `<strong>Psalm 139:1-3</strong><br>"O LORD, you have searched me and known me. You know when I sit down and when I rise up; you discern my thoughts from far away. You search out my path and my lying down, and are acquainted with all my ways."<br><br><div class="quote">"God is at home; it is we who have gone out for a walk." — Meister Eckhart</div><br><br><em>Lectio Divina — Read aloud, slowly, three times:</em><br>First reading: receive the words.<br>Second reading: notice which phrase stirs you.<br>Third reading: rest in silence with that phrase. Let it pray you.`
                     },
                     wisdom: {
                         icon: "🎓",
@@ -3003,7 +3004,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<strong>Song of Songs 2:10-11</strong><br>"My beloved speaks and says to me: 'Arise, my love, my beautiful one, and come away, for behold, the winter is past, the rain is over and gone.'"<br><br><div class="quote">"The greatest revolution of our generation is the discovery that human beings, by changing the inner attitudes of their minds, can change the outer aspects of their lives." - William James</div><br>Recent research shows that experiences of sacred love activate the same neural pathways as romantic love, but with additional activation in areas associated with transcendence and meaning-making. Divine love doesn't diminish human love but reveals its ultimate source.`
+                        content: `<strong>Psalm 88:1-3</strong><br>"O LORD, God of my salvation, when, at night, I cry out in your presence, let my prayer come before you; incline your ear to my cry. For my soul is full of troubles, and my life draws near to Sheol."<br><br><div class="quote">"In the dark night of the soul, bright flows the river of God." — John of the Cross</div><br><br><em>Lectio Divina — Read aloud, slowly, three times:</em><br>First reading: receive the words.<br>Second reading: notice which phrase stirs you.<br>Third reading: rest in silence with that phrase. Let it pray you.`
                     },
                     wisdom: {
                         icon: "🎓",
@@ -3051,7 +3052,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<strong>Genesis 1:27</strong><br>"So God created mankind in his own image, in the image of God he created them; male and female he created them."<br><br><div class="quote">"Creativity is not a talent. It is a way of operating. It is the courage to surrender to uncertainty and allow something genuinely new to emerge." - John Cleese</div><br>Siegel (2020) shows that creative activities activate the brain's default mode network in ways that facilitate insight, problem-solving, and meaning-making. When we create, we participate in the ongoing creation of the universe itself.`
+                        content: `<strong>Psalm 104:1-2</strong><br>"Bless the LORD, O my soul. O LORD my God, you are very great. You are clothed with honor and majesty, wrapped in light as with a garment, stretching out the heavens like a tent."<br><br><div class="quote">"The earth is at the same time mother — she is mother of all that is natural, mother of all that is human. She is the mother of all, for contained in her are the seeds of all." — Hildegard of Bingen</div><br><br><em>Lectio Divina — Read aloud, slowly, three times:</em><br>First reading: receive the words.<br>Second reading: notice which phrase stirs you.<br>Third reading: rest in silence with that phrase. Let it pray you.`
                     },
                     wisdom: {
                         icon: "🎓",
@@ -3099,7 +3100,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<strong>Proverbs 3:13-14</strong><br>"Blessed are those who find wisdom, those who gain understanding, for she is more profitable than silver and yields better returns than gold."<br><br><div class="quote">"The beginning of wisdom is wonder, and the end of wisdom is wonder. But between the first wonder and the last is a whole lifetime of learning how to pay attention." - Rachel Naomi Remen</div><br>Siegel (2020) and Aten, et al. (2012) show that wisdom - defined as cognitive flexibility, perspective-taking, and emotional regulation - is strongly correlated with psychological well-being and life satisfaction. True wisdom integrates knowledge with compassion and understanding with humility.`
+                        content: `<strong>Psalm 72:1-3</strong><br>"Give the king your justice, O God, and your righteousness to a king's son. May he judge your people with righteousness, and your poor with justice. May the mountains yield prosperity for the people, and the hills, in righteousness."<br><br><div class="quote">"Our heart is restless until it finds its rest in Thee." — Augustine of Hippo</div><br><br><em>Lectio Divina — Read aloud, slowly, three times:</em><br>First reading: receive the words.<br>Second reading: notice which phrase stirs you.<br>Third reading: rest in silence with that phrase. Let it pray you.`
                     },
                     wisdom: {
                         icon: "🎓",
@@ -3147,7 +3148,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<strong>Isaiah 50:4</strong><br>"The Sovereign Lord has given me a well-instructed tongue, to know the word that sustains the weary. He wakens me morning by morning, wakens my ear to listen like one being instructed."<br><br><div class="quote">"Teaching is not filling a bucket but lighting a fire. The best teachers are those who show you where to look but don't tell you what to see." - Alexandra K. Trenfor</div><br>Recent research shows that teaching and mentoring activate neural reward pathways and enhance the teacher's own learning and memory consolidation. When we teach what we most need to learn, both teacher and student are transformed.`
+                        content: `<strong>Psalm 23:1-3</strong><br>"The LORD is my shepherd, I shall not want. He makes me lie down in green pastures; he leads me beside still waters; he restores my soul. He leads me in right paths for his name's sake."<br><br><div class="quote">"The friend who can be silent with us in a moment of despair, who can stay with us in an hour of grief, who can tolerate not-knowing and face with us the reality of our powerlessness — that is the friend who cares." — Henri Nouwen</div><br><br><em>Lectio Divina — Read aloud, slowly, three times:</em><br>First reading: receive the words.<br>Second reading: notice which phrase stirs you.<br>Third reading: rest in silence with that phrase. Let it pray you.`
                     },
                     wisdom: {
                         icon: "🎓",
@@ -3195,7 +3196,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<strong>1 Kings 3:9</strong><br>"So give your servant a discerning heart to govern your people and to distinguish between right and wrong. For who is able to govern this great people of yours?"<br><br><div class="quote">"The curious paradox is that when I accept myself just as I am, then I can change. Judgment becomes observation, and observation becomes compassion." - Carl Rogers</div><br>Recent research shows that discernment - the ability to distinguish between helpful and harmful choices - is crucial for psychological well-being and spiritual growth. True judgment serves clarity and compassion, not condemnation.`
+                        content: `<strong>Psalm 19:1-3</strong><br>"The heavens are telling the glory of God; and the firmament proclaims his handiwork. Day to day pours forth speech, and night to night declares knowledge. There is no speech, nor are there words; their voice is not heard; yet their voice goes out through all the earth."<br><br><div class="quote">"The whole creation is a mirror of the divine presence, calling us to recognize the sacred in all that is." — Bede Griffiths</div><br><br><em>Lectio Divina — Read aloud, slowly, three times:</em><br>First reading: receive the words.<br>Second reading: notice which phrase stirs you.<br>Third reading: rest in silence with that phrase. Let it pray you.`
                     },
                     wisdom: {
                         icon: "🎓",
@@ -3243,7 +3244,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<strong>Psalm 78:72</strong><br>"And David shepherded them with integrity of heart; with skillful hands he led them."<br><br><div class="quote">"The best leaders are those who lead from their wounds. They have been broken open enough to let light in, and they lead others toward that same light." - Richard Rohr</div><br>Recent research shows that authentic leadership emerges from self-awareness, emotional intelligence, and commitment to serving something greater than oneself. True authority serves the flourishing of all, not the elevation of the few.`
+                        content: `<strong>Psalm 18:1-2</strong><br>"I love you, O LORD, my strength. The LORD is my rock, my fortress, and my deliverer, my God, my rock in whom I take refuge, my shield, and the horn of my salvation, my stronghold."<br><br><div class="quote">"The biggest human temptation is to settle for too little." — Thomas Merton</div><br><br><em>Lectio Divina — Read aloud, slowly, three times:</em><br>First reading: receive the words.<br>Second reading: notice which phrase stirs you.<br>Third reading: rest in silence with that phrase. Let it pray you.`
                     },
                     wisdom: {
                         icon: "🎓",
@@ -3291,7 +3292,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<strong>Psalm 90:12 (NRSV)</strong><br>"So teach us to number our days, that we may present to You a heart of wisdom."<br><br><div class="quote">"The days of our life are seventy years, or perhaps eighty, if we are strong; even then their span is only toil and trouble; they are soon gone, and we fly away." - Psalm 90:10</div><br><br><strong>Nahum Sarna on Moses and Psalm 90:</strong><br><div style="background: #f8f9fa; padding: 15px; border-left: 4px solid #2196f3; margin: 15px 0;">Psalm 90, the only psalm attributed to Moses in the entire Psalter, carries profound symbolic weight. Sarna points out the mysterious riddle: Genesis 6:3 sets humanity's lifespan limit at 120 years, yet in all of Torah, only Moses lives to exactly that span. Moses embodies the fullness of human possibility under the old covenant - a complete life lived in conscious relationship with mortality. But his prayer to "number our days" points beyond itself to the New Exodus revealed in Christ, where death itself becomes the doorway to eternal life. The grain of wheat that dies to produce much grain transforms Moses' wisdom about mortality into resurrection hope.</div><br><strong>From Moses to Christ:</strong> Where Moses teaches us to number our days in wisdom, Christ teaches us that our numbered days participate in numberless eternity. The New Exodus doesn't merely accept mortality but transforms it - death becomes not an ending but a beginning, not a limitation but a liberation into divine life itself.`
+                        content: `<strong>Psalm 90:12 (NRSV)</strong><br>"So teach us to number our days, that we may present to You a heart of wisdom."<br><br><div class="quote">"The days of our life are seventy years, or perhaps eighty, if we are strong; even then their span is only toil and trouble; they are soon gone, and we fly away." - Psalm 90:10</div><br><br><strong>Nahum Sarna on Moses and Psalm 90:</strong><br><div style="background: #f8f9fa; padding: 15px; border-left: 4px solid #2196f3; margin: 15px 0;">Psalm 90, the only psalm attributed to Moses in the entire Psalter, carries profound symbolic weight. Sarna points out the mysterious riddle: Genesis 6:3 sets humanity's lifespan limit at 120 years, yet in all of Torah, only Moses lives to exactly that span. Moses embodies the fullness of human possibility under the old covenant - a complete life lived in conscious relationship with mortality. But his prayer to "number our days" points beyond itself to the New Exodus revealed in Christ, where death itself becomes the doorway to eternal life. The grain of wheat that dies to produce much grain transforms Moses' wisdom about mortality into resurrection hope.</div><br><strong>From Moses to Christ:</strong> Where Moses teaches us to number our days in wisdom, Christ teaches us that our numbered days participate in numberless eternity. The New Exodus doesn't merely accept mortality but transforms it — death becomes not an ending but a beginning, not a limitation but a liberation into divine life itself.<br><br><em>Lectio Divina — Read aloud, slowly, three times:</em><br>First reading: receive the words.<br>Second reading: notice which phrase stirs you.<br>Third reading: rest in silence with that phrase. Let it pray you.`
                     },
                     wisdom: {
                         icon: "🎓",
@@ -4126,7 +4127,17 @@ function playSunoAudio(url) {
     document.getElementById('ambientAudioLabel').textContent = 'Listen Again';
   };
   
-  sunoAudioElement.play();
+  sunoAudioElement.load();
+  const playPromise = sunoAudioElement.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(err => {
+      console.warn('Audio play blocked:', err);
+      audioPlaying = false;
+      document.getElementById('audioPlayBtn').textContent = '▶';
+      document.getElementById('audioWaveform').classList.remove('playing');
+      document.getElementById('audioStatusText').textContent = 'Tap ▶ to begin reading';
+    });
+  }
 }
 
 // ── Speed control ──
