@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Soul Encounters — A Reliquary</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1a1510">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Soul Encounters">
+<link rel="apple-touch-icon" href="icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Philosopher:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -210,6 +217,21 @@ body {
   text-transform: uppercase;
   color: var(--gold);
   margin-bottom: 8px;
+}
+.reliquary-label-main {
+  font-size: 1.05em;
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
+}
+
+.option2-label {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 1.05em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  padding: 0 4px;
 }
 
 .reliquary-desc {
@@ -624,11 +646,24 @@ body {
 }
 
 /* Progress Dots */
+.journey-intro {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 0.82em;
+  color: var(--parchment-dim);
+  text-align: center;
+  line-height: 1.65;
+  max-width: 360px;
+  margin: 28px auto 0;
+  padding: 0 12px;
+  letter-spacing: 0.02em;
+  animation: fadeUp 1.5s ease-out 0.9s both;
+}
+
 .journey-progress {
   display: flex;
-  gap: 4px;
-  margin-top: 36px;
-  align-items: center;
+  gap: 6px;
+  margin-top: 22px;
+  align-items: flex-end;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 440px;
@@ -636,41 +671,68 @@ body {
 }
 
 .progress-week {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(197,165,90,0.06);
-  border: 1px solid rgba(197,165,90,0.15);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-family: 'Philosopher', sans-serif;
-  font-size: 0.62em;
-  color: var(--text-muted);
+  gap: 2px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 4px 3px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.progress-week .lantern-flame {
+  font-size: 1.1em;
+  line-height: 1;
+  opacity: 0.22;
+  transition: all 0.3s ease;
+  filter: grayscale(1);
+}
+
+.progress-week .lantern-num {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 0.58em;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
   transition: all 0.3s ease;
 }
 
-.progress-week:hover {
-  border-color: rgba(197,165,90,0.3);
-  background: rgba(197,165,90,0.1);
+.progress-week:hover .lantern-flame {
+  opacity: 0.55;
+  filter: grayscale(0);
 }
 
-.progress-week.completed {
-  background: rgba(197,165,90,0.12);
-  border-color: var(--gold-dim);
+.progress-week:hover .lantern-num {
+  color: var(--gold-dim);
+}
+
+.progress-week.completed .lantern-flame {
+  opacity: 0.55;
+  filter: grayscale(0);
+}
+
+.progress-week.completed .lantern-num {
+  color: var(--gold-dim);
+}
+
+.progress-week.current .lantern-flame {
+  opacity: 1;
+  filter: grayscale(0) drop-shadow(0 0 4px rgba(255,200,80,0.7));
+  font-size: 1.35em;
+  animation: flicker 2.5s ease-in-out infinite;
+}
+
+.progress-week.current .lantern-num {
   color: var(--gold);
+  font-weight: 700;
+  font-size: 0.65em;
 }
 
-.progress-week.current {
-  background: var(--gold);
-  border-color: var(--gold-light);
-  color: var(--deep);
-  font-weight: 700;
-  box-shadow: 0 0 12px rgba(197,165,90,0.4);
-  width: 32px;
-  height: 32px;
-  font-size: 0.7em;
+@keyframes flicker {
+  0%, 100% { filter: grayscale(0) drop-shadow(0 0 4px rgba(255,200,80,0.7)); }
+  50%       { filter: grayscale(0) drop-shadow(0 0 8px rgba(255,200,80,0.95)); }
 }
 
 .progress-label {
@@ -680,7 +742,7 @@ body {
   color: var(--parchment-dim);
   width: 100%;
   text-align: center;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
 /* Octave Ring (8 practices in a circle) */
@@ -2027,10 +2089,20 @@ body {
     <div class="daily-source" id="dailySource">— William Blake, <em>Auguries of Innocence</em></div>
   </div>
 
-  <!-- The Reliquary — Eight Sacred Practices -->
+  <!-- The Reliquary — Two Paths Header -->
   <div class="reliquary-intro">
-    <div class="reliquary-label">✦ Open the Reliquary ✦</div>
-    <p class="reliquary-desc">Choose what your soul needs right now. Every practice leads deeper.</p>
+    <div class="reliquary-label reliquary-label-main">Open the Reliquary: What's Calling You?</div>
+
+    <div class="epilogue-card journey-entry-card" onclick="showScreen('journeyScreen')" style="margin-bottom:22px;">
+      <span style="font-size:1.6em; flex-shrink:0;">🕯️</span>
+      <div class="epilogue-card-text">
+        <div class="epilogue-card-title">Option 1: The 13-Week Journey</div>
+        <div class="epilogue-card-subtitle">Guided &amp; Structured</div>
+      </div>
+      <div class="epilogue-card-arrow">&rarr;</div>
+    </div>
+
+    <div class="option2-label">Option 2: What's Calling You Now? &nbsp;(Spontaneous)</div>
   </div>
 
   <div class="reliquary-grid">
@@ -2126,17 +2198,8 @@ body {
     <div class="epilogue-card-arrow">&rarr;</div>
   </div>
 
-  <!-- Opt-in: Structured Journey + Community -->
+  <!-- Opt-in: Community -->
   <div class="secondary-paths">
-    <button class="secondary-btn journey-btn" onclick="showScreen('journeyScreen')">
-      <span class="secondary-icon">🕯️</span>
-      <span class="secondary-text">
-        <span class="secondary-title">Take the 13-Week Journey</span>
-      </span>
-      <span class="secondary-arrow">→</span>
-    </button>
-
-    <button class="secondary-btn cloister-btn" onclick="openCloister()">
       <span class="secondary-icon">⛪</span>
       <span class="secondary-text">
         <span class="secondary-title">Visit the Cloister</span>
@@ -2440,21 +2503,24 @@ body {
 <div id="journeyScreen" class="screen journey-screen">
   <button class="back-btn" onclick="showScreen('homeScreen')">← Home</button>
 
-  <!-- Progress Dots -->
+  <!-- Journey Intro -->
+  <p class="journey-intro">Begin with Week 1 and notice how the themes flow from week to week. Each week holds an Octave of eight practices — designed to flow from Practice 1 through 8. Complete all eight before moving on to the next week's journey.</p>
+
+  <!-- Progress Lanterns -->
   <div class="journey-progress">
-    <div class="progress-week completed" onclick="switchWeek(1)">1</div>
-    <div class="progress-week completed" onclick="switchWeek(2)">2</div>
-    <div class="progress-week current" onclick="switchWeek(3)">3</div>
-    <div class="progress-week" onclick="switchWeek(4)">4</div>
-    <div class="progress-week" onclick="switchWeek(5)">5</div>
-    <div class="progress-week" onclick="switchWeek(6)">6</div>
-    <div class="progress-week" onclick="switchWeek(7)">7</div>
-    <div class="progress-week" onclick="switchWeek(8)">8</div>
-    <div class="progress-week" onclick="switchWeek(9)">9</div>
-    <div class="progress-week" onclick="switchWeek(10)">10</div>
-    <div class="progress-week" onclick="switchWeek(11)">11</div>
-    <div class="progress-week" onclick="switchWeek(12)">12</div>
-    <div class="progress-week" onclick="switchWeek(13)">13</div>
+    <div class="progress-week completed" onclick="switchWeek(1)"><span class="lantern-flame">🕯</span><span class="lantern-num">1</span></div>
+    <div class="progress-week completed" onclick="switchWeek(2)"><span class="lantern-flame">🕯</span><span class="lantern-num">2</span></div>
+    <div class="progress-week current" onclick="switchWeek(3)"><span class="lantern-flame">🕯</span><span class="lantern-num">3</span></div>
+    <div class="progress-week" onclick="switchWeek(4)"><span class="lantern-flame">🕯</span><span class="lantern-num">4</span></div>
+    <div class="progress-week" onclick="switchWeek(5)"><span class="lantern-flame">🕯</span><span class="lantern-num">5</span></div>
+    <div class="progress-week" onclick="switchWeek(6)"><span class="lantern-flame">🕯</span><span class="lantern-num">6</span></div>
+    <div class="progress-week" onclick="switchWeek(7)"><span class="lantern-flame">🕯</span><span class="lantern-num">7</span></div>
+    <div class="progress-week" onclick="switchWeek(8)"><span class="lantern-flame">🕯</span><span class="lantern-num">8</span></div>
+    <div class="progress-week" onclick="switchWeek(9)"><span class="lantern-flame">🕯</span><span class="lantern-num">9</span></div>
+    <div class="progress-week" onclick="switchWeek(10)"><span class="lantern-flame">🕯</span><span class="lantern-num">10</span></div>
+    <div class="progress-week" onclick="switchWeek(11)"><span class="lantern-flame">🕯</span><span class="lantern-num">11</span></div>
+    <div class="progress-week" onclick="switchWeek(12)"><span class="lantern-flame">🕯</span><span class="lantern-num">12</span></div>
+    <div class="progress-week" onclick="switchWeek(13)"><span class="lantern-flame">🕯</span><span class="lantern-num">13</span></div>
     <span class="progress-label">Week 3 of 13</span>
   </div>
 
@@ -2504,91 +2570,91 @@ const scriptureAudio = {
   // Week 1: The Seeker — Psalm 42
   week1: {
     source: 'suno', // Author recording — MP3
-    sunoUrl: 'Psalm_42.mp3',
+    sunoUrl: 'audio/week01-psalm-42-seeker.mp3',
     title: 'Psalm 42 — The Seeker',
     text: `As a deer longs for flowing streams, so my soul longs for you, O God. My soul thirsts for God, for the living God. When shall I come and behold the face of God? My tears have been my food day and night, while people say to me continually, "Where is your God?" These things I remember, as I pour out my soul: how I went with the throng, and led them in procession to the house of God, with glad shouts and songs of thanksgiving, a multitude keeping festival. Why are you cast down, O my soul, and why are you disquieted within me? Hope in God; for I shall again praise him, my help and my God. Deep calls to deep at the thunder of your cataracts; all your waves and your billows have gone over me. By day the LORD commands his steadfast love, and at night his song is with me, a prayer to the God of my life.`
   },
   // Week 2: The Innocent / Fool — Psalm 131
   week2: {
-    source: 'speech',
-    sunoUrl: '',
+    source: 'suno',
+    sunoUrl: 'audio/week02-psalm-131-innocent.mp3',
     title: 'Psalm 131 — The Innocent',
     text: `O LORD, my heart is not lifted up, my eyes are not raised too high; I do not occupy myself with things too great and too marvelous for me. But I have calmed and quieted my soul, like a weaned child with its mother; my soul is like the weaned child that is with me. O Israel, hope in the LORD from this time on and forevermore.`
   },
   // Week 3: The Orphan — Psalm 22
   week3: {
-    source: 'speech',
-    sunoUrl: '',
+    source: 'suno',
+    sunoUrl: 'audio/week03-psalm-22-orphan.mp3',
     title: 'Psalm 22 — The Orphan',
     text: `My God, my God, why have you forsaken me? Why are you so far from helping me, from the words of my groaning? O my God, I cry by day, but you do not answer; and by night, but find no rest. Yet you are holy, enthroned on the praises of Israel. In you our ancestors trusted; they trusted, and you delivered them. To you they cried, and were saved; in you they trusted, and were not put to shame. But I am a worm, and not human; scorned by others, and despised by the people. All who see me mock at me; they make mouths at me, they shake their heads; "Commit your cause to the LORD; let him deliver — let him rescue the one in whom he delights!" Yet it was you who took me from the womb; you kept me safe on my mother's breast. On you I was cast from my birth, and since my mother bore me you have been my God. Do not be far from me, for trouble is near and there is no one to help.`
   },
   // Week 4: The Warrior — Psalm 144
   week4: {
-    source: 'speech',
-    sunoUrl: '',
+    source: 'suno',
+    sunoUrl: 'audio/week04-psalm-144-warrior.mp3',
     title: 'Psalm 144 — The Warrior',
     text: `Blessed be the LORD, my rock, who trains my hands for war, and my fingers for battle; my rock and my fortress, my stronghold and my deliverer, my shield, in whom I take refuge, who subdues the peoples under me. O LORD, what are human beings that you regard them, or mortals that you think of them? They are like a breath; their days are like a passing shadow. Bow your heavens, O LORD, and come down; touch the mountains so that they smoke. Make the lightning flash and scatter them; send out your arrows and rout them. Stretch out your hand from on high; set me free and rescue me from the mighty waters, from the hand of aliens.`
   },
   // Week 5: The Lover — Psalm 45
   week5: {
-    source: 'speech',
-    sunoUrl: '',
+    source: 'suno',
+    sunoUrl: 'audio/week05-psalm-45-lover.mp3',
     title: 'Psalm 45 — The Lover',
     text: `My heart overflows with a goodly theme; I address my verses to the king; my tongue is like the pen of a ready scribe. You are the most handsome of men; grace is poured upon your lips; therefore God has blessed you forever. Gird your sword on your thigh, O mighty one, in your glory and majesty. In your majesty ride on victoriously for the cause of truth and to defend the right; let your right hand teach you dread deeds. All your robes are fragrant with myrrh and aloes and cassia. From ivory palaces stringed instruments make you glad.`
   },
   // Week 6: The Shapeshifter — Psalm 139
   week6: {
-    source: 'speech',
-    sunoUrl: '',
+    source: 'suno',
+    sunoUrl: 'audio/week06-psalm-139-shapeshifter.mp3',
     title: 'Psalm 139 — The Shapeshifter',
     text: `O LORD, you have searched me and known me. You know when I sit down and when I rise up; you discern my thoughts from far away. You search out my path and my lying down, and are acquainted with all my ways. Even before a word is on my tongue, O LORD, you know it completely. You hem me in, behind and before, and lay your hand upon me. Such knowledge is too wonderful for me; it is so high that I cannot attain it. Where can I go from your spirit? Or where can I flee from your presence? If I ascend to heaven, you are there; if I make my bed in Sheol, you are there. If I take the wings of the morning and settle at the farthest limits of the sea, even there your hand shall lead me, and your right hand shall hold me fast.`
   },
   // Week 7: Death/Rebirth — Psalm 88
   week7: {
-    source: 'speech',
-    sunoUrl: '',
+    source: 'suno',
+    sunoUrl: 'audio/week07-psalm-88-death-rebirth.mp3',
     title: 'Psalm 88 — Death and Rebirth',
     text: `O LORD, God of my salvation, when, at night, I cry out in your presence, let my prayer come before you; incline your ear to my cry. For my soul is full of troubles, and my life draws near to Sheol. I am counted among those who go down to the Pit; I am like those who have no help, like those forsaken among the dead, like the slain that lie in the grave, like those whom you remember no more, for they are cut off from your hand. You have put me in the depths of the Pit, in the regions dark and deep. Your wrath lies heavy upon me, and you overwhelm me with all your waves. Every day I call on you, O LORD; I spread out my hands to you. Do you work wonders for the dead? Do the shades rise up to praise you?`
   },
   // Week 8: The Magician — Psalm 104
   week8: {
-    source: 'speech',
-    sunoUrl: '',
+    source: 'suno',
+    sunoUrl: 'audio/week08-psalm-104-magician.mp3',
     title: 'Psalm 104 — The Magician',
     text: `Bless the LORD, O my soul. O LORD my God, you are very great. You are clothed with honor and majesty, wrapped in light as with a garment. You stretch out the heavens like a tent, you set the beams of your chambers on the waters, you make the clouds your chariot, you ride on the wings of the wind, you make the winds your messengers, fire and flame your ministers. You set the earth on its foundations, so that it shall never be shaken. You make springs gush forth in the valleys; they flow between the hills. You cause the grass to grow for the cattle, and plants for people to use, to bring forth food from the earth. O LORD, how manifold are your works! In wisdom you have made them all; the earth is full of your creatures.`
   },
   // Week 9: The Ruler — Psalm 72
   week9: {
-    source: 'speech',
-    sunoUrl: '',
+    source: 'suno',
+    sunoUrl: 'audio/week09-psalm-72-ruler.mp3',
     title: 'Psalm 72 — The Ruler',
     text: `Give the king your justice, O God, and your righteousness to a king's son. May he judge your people with righteousness, and your poor with justice. May the mountains yield prosperity for the people, and the hills, in righteousness. May he defend the cause of the poor of the people, give deliverance to the needy, and crush the oppressor. May he live while the sun endures, and as long as the moon, throughout all generations. May he be like rain that falls on the mown grass, like showers that water the earth. In his days may righteousness flourish and peace abound, until the moon is no more. For he delivers the needy when they call, the poor and those who have no helper.`
   },
   // Week 10: The Caregiver — Psalm 23
   week10: {
-    source: 'speech',
-    sunoUrl: '',
+    source: 'suno',
+    sunoUrl: 'audio/week10-psalm-23-caregiver.mp3',
     title: 'Psalm 23 — The Caregiver',
     text: `The LORD is my shepherd, I shall not want. He makes me lie down in green pastures; he leads me beside still waters; he restores my soul. He leads me in right paths for his name's sake. Even though I walk through the darkest valley, I fear no evil; for you are with me; your rod and your staff — they comfort me. You prepare a table before me in the presence of my enemies; you anoint my head with oil; my cup overflows. Surely goodness and mercy shall follow me all the days of my life, and I shall dwell in the house of the LORD my whole life long.`
   },
   // Week 11: The Creator — Psalm 19
   week11: {
-    source: 'speech',
-    sunoUrl: '',
+    source: 'suno',
+    sunoUrl: 'audio/week11-psalm-19-creator.mp3',
     title: 'Psalm 19 — The Creator',
     text: `The heavens are telling the glory of God; and the firmament proclaims his handiwork. Day to day pours forth speech, and night to night declares knowledge. There is no speech, nor are there words; their voice is not heard; yet their voice goes out through all the earth, and their words to the end of the world. In the heavens he has set a tent for the sun, which comes out like a bridegroom from his wedding canopy, and like a strong man runs its course with joy. The law of the LORD is perfect, reviving the soul; the decrees of the LORD are sure, making wise the simple; the precepts of the LORD are right, rejoicing the heart; the commandment of the LORD is clear, enlightening the eyes. Let the words of my mouth and the meditation of my heart be acceptable to you, O LORD, my rock and my redeemer.`
   },
   // Week 12: The Hero — Psalm 18
   week12: {
-    source: 'speech',
-    sunoUrl: '',
+    source: 'suno',
+    sunoUrl: 'audio/week12-psalm-18-hero.mp3',
     title: 'Psalm 18 — The Hero',
     text: `I love you, O LORD, my strength. The LORD is my rock, my fortress, and my deliverer, my God, my rock in whom I take refuge, my shield, and the horn of my salvation, my stronghold. I call upon the LORD, who is worthy to be praised, so I shall be saved from my enemies. The cords of death encompassed me; the torrents of perdition assailed me. In my distress I called upon the LORD; to my God I cried for help. From his temple he heard my voice, and my cry to him reached his ears. Then the earth reeled and rocked; the foundations also of the mountains trembled and quaked, because he was angry. He bowed the heavens, and came down; thick darkness was under his feet. He reached down from on high, he took me; he drew me out of mighty waters. He delivered me from my strong enemy, and from those who hated me; for they were too mighty for me.`
   },
   // Week 13: The Sage — Psalm 90
   week13: {
-    source: 'speech',
-    sunoUrl: '',
+    source: 'suno',
+    sunoUrl: 'audio/week13-psalm-90-sage.mp3',
     title: 'Psalm 90 — The Sage',
     text: `Lord, you have been our dwelling place in all generations. Before the mountains were brought forth, or ever you had formed the earth and the world, from everlasting to everlasting you are God. You turn us back to dust, and say, "Turn back, you mortals." For a thousand years in your sight are like yesterday when it is past, or like a watch in the night. You sweep them away; they are like a dream, like grass that is renewed in the morning; in the morning it flourishes and is renewed; in the evening it fades and withers. So teach us to count our days that we may gain a wise heart. Satisfy us in the morning with your steadfast love, so that we may rejoice and be glad all our days. Let the favor of the Lord our God be upon us, and prosper for us the work of our hands — O prosper the work of our hands!`
   }
@@ -3417,8 +3483,11 @@ function openPracticeMenu(type) {
 }
 
 function openCloister() {
-  // Opens Skool in a new tab (or Skool app if installed on mobile)
-  window.open(CLOISTER_URL, '_blank');
+  // Opens Skool community — uses location.href as fallback if popup is blocked
+  const win = window.open(CLOISTER_URL, '_blank');
+  if (!win || win.closed || typeof win.closed === 'undefined') {
+    window.location.href = CLOISTER_URL;
+  }
 }
 
 // ═══════════════════════════════════════
@@ -3641,7 +3710,7 @@ const practiceConfig = {
   imagination: { audio: false, breath: true  }, // Inner theater — timed meditation
   buddhist:    { audio: false, breath: true  }, // Seated practice — timed meditation
   music:       { audio: false, breath: true  }, // Active listening session — timed
-  blake:       { audio: true,  breath: false }, // Poetry readings — listen & absorb
+  blake:       { audio: false, breath: false }, // Poetry readings — read & absorb (no audio player)
   journal:     { audio: false, breath: true  }  // Writing session — timed
 };
 
@@ -4297,7 +4366,7 @@ const week3Practices = [
 
 function switchWeek(n) {
   currentWeek = n;
-  // Update visual state of week circles
+  // Update visual state of lantern indicators
   document.querySelectorAll('.progress-week').forEach((el, i) => {
     el.className = 'progress-week';
     if (i + 1 < n) el.classList.add('completed');
@@ -4305,24 +4374,47 @@ function switchWeek(n) {
   });
   // Update label
   document.querySelector('.progress-label').textContent = 'Week ' + n + ' of 13';
-  // Update header from scriptureAudio data
-  const weekData = scriptureAudio['week' + n];
-  if (weekData) {
-    document.querySelector('.week-theme').textContent = weekData.title.split(' — ')[0] || weekData.title;
+
+  // Fix Bug 1: Update week-theme AND week-archetype from weekThemes data
+  const theme = weekThemes.find(t => t.num === n);
+  if (theme) {
+    document.querySelector('.week-theme').textContent = theme.archetype;
+    document.querySelector('.week-archetype').textContent = theme.psalm + ' · ' + theme.wisdom;
   }
+  document.querySelector('.week-number').textContent = 'Week ' + n + ' of 13';
+
+  // Fix Bug 2: Rebuild practices from the correct week's data
+  buildJourneyPractices(n);
 }
 
-function buildJourneyPractices() {
+function buildJourneyPractices(weekNum) {
+  weekNum = weekNum || currentWeek;
   const container = document.getElementById('practicesList');
   container.innerHTML = '';
-  week3Practices.forEach(p => {
+
+  const practiceTypes = [
+    { key: 'psalmody',    icon: '📖', name: 'Psalmody & Scripture' },
+    { key: 'wisdom',      icon: '📜', name: 'Historical Wisdom' },
+    { key: 'archetype',   icon: '🏛️', name: 'Archetype & Shadow' },
+    { key: 'imagination', icon: '🌟', name: 'Active Imagination' },
+    { key: 'buddhist',    icon: '☸️', name: 'Buddhist Integration' },
+    { key: 'music',       icon: '🎵', name: 'Music & Lyric Therapy' },
+    { key: 'blake',       icon: '☄️', name: 'William Blake' },
+    { key: 'journal',     icon: '📝', name: 'Reflective Journaling' }
+  ];
+
+  const wd = weekData[weekNum];
+  practiceTypes.forEach((p, idx) => {
+    const practiceContent = wd && wd.practices && wd.practices[p.key];
+    const title = practiceContent ? practiceContent.title : p.name;
+    const desc  = practiceContent ? practiceContent.content : '';
     const row = document.createElement('div');
     row.className = 'practice-row';
-    row.addEventListener('click', () => openPractice(p.title, p.desc, p.type));
+    row.addEventListener('click', () => openPractice(title, desc, p.key));
     row.innerHTML = `
-      <div class="practice-row-icon octave-icon-${['psalmody','wisdom','archetype','imagination','buddhist','music','blake','journal'].indexOf(p.type) + 1}">${p.icon}</div>
+      <div class="practice-row-icon octave-icon-${idx + 1}">${p.icon}</div>
       <div class="practice-row-name">${p.name}</div>
-      <div class="practice-row-check${p.done ? ' done' : ''}">${p.done ? '✓' : ''}</div>
+      <div class="practice-row-check"></div>
     `;
     container.appendChild(row);
   });
