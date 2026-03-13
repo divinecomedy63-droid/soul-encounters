@@ -4423,8 +4423,18 @@ function buildJourneyPractices(weekNum) {
   const wd = weekData[weekNum];
   practiceTypes.forEach((p, idx) => {
     const practiceContent = wd && wd.practices && wd.practices[p.key];
+    const practiceShortDesc = {
+      psalmody:    "The psalms are humanity's oldest therapy session — three thousand years of crying out and singing praise. Pray them slowly, in the spirit of lectio divina. Let God's word read you.",
+      wisdom:      "Spiritual archaeology — digging up treasures that wise souls have buried for us to find. Walk with Augustine, sit with Julian of Norwich, argue theology with Merton.",
+      archetype:   "Which character is running the show today? Meet your inner cast — the Hero, the Orphan, the Trickster — and discover what they're protecting.",
+      imagination: "Close your eyes and step into the theater of the psyche. Meet the figures who wait there. Let the dialogue unfold — unscripted, uncensored, alive.",
+      buddhist:    "Settle into silence. Breath by breath, thought by thought, come home to the present moment. Nothing to fix, nothing to achieve — just being.",
+      music:       "Let the music do what words alone cannot. Listen, curate, create. The right song at the right moment can unlock what months of talk cannot.",
+      blake:       "Enter the visionary's world. Blake saw angels in trees and eternity in an hour. Let his fire rekindle your capacity for wonder.",
+      journal:     "The blank page is the most honest mirror. Write without editing, without censoring — let what needs to emerge find its way to the surface."
+    };
     const title = practiceContent ? practiceContent.title : p.name;
-    const desc  = ''; // Content renders in practiceGuidance; passing HTML here breaks practiceDescription (textContent)
+    const desc  = practiceShortDesc[p.key] || '';
     const row = document.createElement('div');
     row.className = 'practice-row';
     row.addEventListener('click', () => openPractice(title, desc, p.key));
