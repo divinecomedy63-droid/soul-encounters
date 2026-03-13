@@ -2768,6 +2768,7 @@ let currentWeek = 3;
 function showScreen(id) {
   // Stop any playing audio when navigating away
   if (audioPlaying) stopAudio();
+  stopCardAudio();
   
   previousScreen = currentScreen;
   document.getElementById(currentScreen).classList.remove('active');
@@ -3578,7 +3579,14 @@ function openPracticeMenu(type) {
     list.appendChild(el);
   });
   
-  showScreen('practiceMenuScreen');
+ showScreen('practiceMenuScreen');
+
+  // Ambient audio — fires when the card view opens
+  if (type === 'psalmody') {
+    initCardAudio('audio/Lux_Aeterna_in_Aeternum.mp3', 'Chant');
+  } else if (type === 'buddhist') {
+    initCardAudio('audio/Mountain_Breath_Mantra.mp3', 'Mantra');
+  }
 }
 
 function openCloister() {
@@ -4546,6 +4554,101 @@ function buildJourneyPractices(weekNum) {
 
 // Build on load
 buildJourneyPractices();
+</script>
+<script>
+/* ============================================================
+   SOUL ENCOUNTERS — AMBIENT CARD AUDIO ENGINE
+   ============================================================ */
+(function () {
+  'use strict';
+
+  let _audio       = null;
+  let _toggleBtn   = null;
+  let _fadeTimer   = null;
+
+  const TARGET_VOLUME  = 0.28;
+  const FADE_DURATION  = 2000;
+  const BTN_ID         = 'se-audio-toggle';
+
+  const ICON_PAUSE = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>`;
+  const ICON_PLAY  = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>`;
+
+  const BTN_STYLES = `
+    position:fixed;top:1rem;right:1rem;z-index:9999;
+    display:flex;align-items:center;gap:0.4em;
+    padding:0.35em 0.75em;
+    background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    border:1px solid rgba(255,255,255,0.35);border-radius:999px;
+    color:#fff;font-size:0.75rem;font-family:inherit;
+    letter-spacing:0.04em;cursor:pointer;
+    transition:background 0.2s,opacity 0.2s;
+    box-shadow:0 2px 8px rgba(0,0,0,0.18);
+  `;
+
+  function _createToggleButton(label) {
+    const btn = document.createElement('button');
+    btn.id = BTN_ID;
+    btn.setAttribute('aria-label', 'Pause ambient audio');
+    btn.style.cssText = BTN_STYLES;
+    btn.innerHTML = ICON_PAUSE + `<span>${label}</span>`;
+    btn.addEventListener('mouseover', () => btn.style.background = 'rgba(255,255,255,0.28)');
+    btn.addEventListener('mouseout',  () => btn.style.background = 'rgba(255,255,255,0.18)');
+    btn.addEventListener('click', () => {
+      if (_audio.paused) {
+        _audio.play();
+        btn.setAttribute('aria-label', 'Pause ambient audio');
+        btn.innerHTML = ICON_PAUSE + `<span>${label}</span>`;
+      } else {
+        _audio.pause();
+        btn.setAttribute('aria-label', 'Play ambient audio');
+        btn.innerHTML = ICON_PLAY + `<span>${label}</span>`;
+      }
+    });
+    return btn;
+  }
+
+  function _fadeIn(audioEl) {
+    audioEl.volume = 0;
+    const start = performance.now();
+    function step(now) {
+      const elapsed  = now - start;
+      const progress = Math.min(elapsed / FADE_DURATION, 1);
+      audioEl.volume = TARGET_VOLUME * (1 - Math.pow(1 - progress, 3));
+      if (progress < 1) _fadeTimer = requestAnimationFrame(step);
+    }
+    _fadeTimer = requestAnimationFrame(step);
+  }
+
+  window.initCardAudio = function (src, label) {
+    stopCardAudio();
+    label = label || 'Chant';
+    _audio         = new Audio(src);
+    _audio.loop    = true;
+    _audio.preload = 'auto';
+    const p = _audio.play();
+    if (p !== undefined) {
+      p.then(() => _fadeIn(_audio))
+       .catch(() => {
+         if (_toggleBtn) {
+           _toggleBtn.innerHTML = ICON_PLAY + `<span>${label}</span>`;
+           _toggleBtn.setAttribute('aria-label', 'Play ambient audio');
+         }
+       });
+    }
+    _toggleBtn = _createToggleButton(label);
+    document.body.appendChild(_toggleBtn);
+  };
+
+  window.stopCardAudio = function () {
+    if (_fadeTimer) { cancelAnimationFrame(_fadeTimer); _fadeTimer = null; }
+    if (_audio)     { _audio.pause(); _audio.src = ''; _audio = null; }
+    const el = document.getElementById(BTN_ID);
+    if (el) el.remove();
+    _toggleBtn = null;
+  };
+
+})();
 </script>
 </body>
 </html>
