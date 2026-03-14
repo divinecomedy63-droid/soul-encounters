@@ -2765,7 +2765,32 @@ let currentWeek = 3;
 // ═══════════════════════════════════════
 // NAVIGATION
 // ═══════════════════════════════════════
-function showScreen(id) {
+window.initCardAudio = function (src, label) {
+  window.stopCardAudio();
+  label = label || 'Chant';
+  var _audio = new Audio(src);
+  _audio.loop = true;
+  _audio.preload = 'auto';
+  _audio.setAttribute('disableRemotePlayback','');
+  var btn = document.createElement('button');
+  btn.id = 'se-audio-toggle';
+  btn.style.cssText = 'position:fixed;top:1rem;right:1rem;z-index:9999;padding:0.35em 0.75em;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.35);border-radius:999px;color:#fff;font-size:0.75rem;cursor:pointer;';
+  btn.textContent = '⏸ ' + label;
+  btn.onclick = function() {
+    if (_audio.paused) { _audio.play(); btn.textContent = '⏸ ' + label; }
+    else { _audio.pause(); btn.textContent = '▶ ' + label; }
+  };
+  document.body.appendChild(btn);
+  _audio.play();
+  window._seAudio = _audio;
+};
+
+window.stopCardAudio = function () {
+  if (window._seAudio) { window._seAudio.pause(); window._seAudio.src = ''; window._seAudio = null; }
+  var el = document.getElementById('se-audio-toggle');
+  if (el) el.remove();
+};
+  function showScreen(id) {
   // Stop any playing audio when navigating away
   if (audioPlaying) stopAudio();
   stopCardAudio();
