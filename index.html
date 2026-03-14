@@ -1735,6 +1735,139 @@ body {
   transform: rotate(180deg);
 }
 
+/* ═══════════════════════════════════════
+   MUSIC PLAYLIST BUILDER
+   ═══════════════════════════════════════ */
+.playlist-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 1.05em;
+  color: var(--gold-light);
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(197,165,90,0.2);
+}
+
+.playlist-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.playlist-input {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(197,165,90,0.2);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: var(--parchment);
+  font-family: 'Philosopher', sans-serif;
+  font-size: 0.9em;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.playlist-input:focus {
+  border-color: rgba(197,165,90,0.5);
+}
+
+.playlist-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.playlist-add-btn {
+  width: 100%;
+  padding: 10px;
+  background: rgba(197,165,90,0.12);
+  border: 1px solid rgba(197,165,90,0.3);
+  border-radius: 10px;
+  color: var(--gold);
+  font-family: 'Philosopher', sans-serif;
+  font-size: 0.9em;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.playlist-add-btn:hover {
+  background: rgba(197,165,90,0.22);
+}
+
+.playlist-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.playlist-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(197,165,90,0.12);
+  border-radius: 10px;
+}
+
+.playlist-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.playlist-item-song {
+  font-size: 0.9em;
+  color: var(--parchment);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.playlist-item-link {
+  display: inline-block;
+  margin-top: 3px;
+  font-size: 0.75em;
+  color: var(--gold-dim);
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.playlist-item-link:hover {
+  opacity: 1;
+  color: var(--gold);
+}
+
+.playlist-item-remove {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1em;
+  cursor: pointer;
+  opacity: 0.5;
+  padding: 2px 6px;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+
+.playlist-item-remove:hover {
+  opacity: 1;
+  color: #e07070;
+}
+
+.playlist-empty {
+  font-size: 0.82em;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 16px;
+  font-style: italic;
+  opacity: 0.7;
+}
+
 .about-practice-panel {
   width: 100%;
   max-width: 680px;
@@ -2512,6 +2645,21 @@ body {
     </div>
   </div>
 
+  <!-- Music & Lyric Therapy — Weekly Playlist Builder -->
+  <div id="playlistSection" style="display:none; width:100%; max-width:480px; margin-top:8px; margin-bottom:32px;">
+    <div class="playlist-header">
+      <span>🎵</span>
+      <span>My Week <span id="playlistWeekNum">1</span> Playlist</span>
+    </div>
+    <div class="playlist-input-group">
+      <input type="text" id="playlistSong" placeholder="Song title — Artist" class="playlist-input" />
+      <input type="url" id="playlistUrl" placeholder="Link: YouTube, Spotify, Apple Music…" class="playlist-input" />
+      <button onclick="addPlaylistItem()" class="playlist-add-btn">+ Add</button>
+    </div>
+    <div id="playlistItems" class="playlist-items"></div>
+    <div id="playlistEmpty" class="playlist-empty">Your weekly playlist lives here. Add songs that resonate with this week's theme.</div>
+  </div>
+
   <!-- Bottom back button (mirrors top) -->
   <button class="back-btn back-btn-bottom" onclick="goBackFromPractice()">← Back</button>
 </div>
@@ -2784,6 +2932,78 @@ window.initCardAudio = function (src, label) {
   _audio.play();
   window._seAudio = _audio;
 };
+
+// ═══════════════════════════════════════
+// MUSIC & LYRIC THERAPY — PLAYLIST BUILDER
+// ═══════════════════════════════════════
+function getPlaylistKey(week) {
+  return 'se_playlist_week_' + week;
+}
+
+function detectPlatform(url) {
+  if (!url) return null;
+  if (url.includes('youtube') || url.includes('youtu.be')) return { label: '▶ YouTube', icon: '🎬' };
+  if (url.includes('spotify')) return { label: '♪ Spotify', icon: '🎧' };
+  if (url.includes('apple')) return { label: '♪ Apple Music', icon: '🍎' };
+  if (url.includes('soundcloud')) return { label: '♪ SoundCloud', icon: '☁️' };
+  if (url.includes('tidal')) return { label: '♪ Tidal', icon: '🌊' };
+  return { label: '🔗 Open link', icon: '🔗' };
+}
+
+function renderPlaylist(week) {
+  const key = getPlaylistKey(week);
+  let items = [];
+  try { items = JSON.parse(localStorage.getItem(key)) || []; } catch(e) {}
+  const container = document.getElementById('playlistItems');
+  const empty = document.getElementById('playlistEmpty');
+  container.innerHTML = '';
+  if (items.length === 0) {
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  items.forEach(function(item, idx) {
+    const el = document.createElement('div');
+    el.className = 'playlist-item';
+    const platform = detectPlatform(item.url);
+    const linkHtml = item.url && platform
+      ? '<a href="' + item.url + '" target="_blank" rel="noopener" class="playlist-item-link">' + platform.icon + ' ' + platform.label + '</a>'
+      : '';
+    el.innerHTML =
+      '<div class="playlist-item-info">' +
+        '<div class="playlist-item-song">' + item.song + '</div>' +
+        linkHtml +
+      '</div>' +
+      '<button class="playlist-item-remove" onclick="removePlaylistItem(' + week + ',' + idx + ')" title="Remove">✕</button>';
+    container.appendChild(el);
+  });
+}
+
+function addPlaylistItem() {
+  const songInput = document.getElementById('playlistSong');
+  const urlInput  = document.getElementById('playlistUrl');
+  const song = (songInput.value || '').trim();
+  const url  = (urlInput.value  || '').trim();
+  if (!song) { songInput.focus(); return; }
+  const key = getPlaylistKey(currentWeek);
+  let items = [];
+  try { items = JSON.parse(localStorage.getItem(key)) || []; } catch(e) {}
+  items.push({ song: song, url: url });
+  localStorage.setItem(key, JSON.stringify(items));
+  songInput.value = '';
+  urlInput.value  = '';
+  songInput.focus();
+  renderPlaylist(currentWeek);
+}
+
+function removePlaylistItem(week, idx) {
+  const key = getPlaylistKey(week);
+  let items = [];
+  try { items = JSON.parse(localStorage.getItem(key)) || []; } catch(e) {}
+  items.splice(idx, 1);
+  localStorage.setItem(key, JSON.stringify(items));
+  renderPlaylist(week);
+}
 
 window.stopCardAudio = function () {
   if (window._seAudio) { window._seAudio.pause(); window._seAudio.src = ''; window._seAudio = null; }
@@ -3868,7 +4088,7 @@ const practiceConfig = {
   archetype:   { audio: true,  breath: false }, // Archetype readings — listen & absorb
   imagination: { audio: false, breath: true  }, // Inner theater — timed meditation
   buddhist:    { audio: false, breath: true  }, // Seated practice — timed meditation
-  music:       { audio: false, breath: true  }, // Active listening session — timed
+  music:       { audio: false, breath: false }, // Active listening — playlist-driven
   blake:       { audio: false, breath: false }, // Poetry readings — read & absorb (no audio player)
   journal:     { audio: false, breath: true  }  // Writing session — timed
 };
@@ -3938,8 +4158,18 @@ function openPractice(title, desc, type) {
     breathTimer.style.display = 'none';
   }
   
-  resetTimer();
+ resetTimer();
   loadAboutPanel(type);
+
+  // Show playlist for Music & Lyric Therapy only
+  const playlistSection = document.getElementById('playlistSection');
+  if (type === 'music') {
+    playlistSection.style.display = 'block';
+    document.getElementById('playlistWeekNum').textContent = currentWeek;
+    renderPlaylist(currentWeek);
+  } else {
+    playlistSection.style.display = 'none';
+  }
   
   // Update lectio divina section (psalmody only)
   const lectioSection = document.getElementById('lectioSection');
