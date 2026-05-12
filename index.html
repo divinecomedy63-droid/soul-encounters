@@ -1735,142 +1735,9 @@ body {
   transform: rotate(180deg);
 }
 
-/* ═══════════════════════════════════════
-   MUSIC PLAYLIST BUILDER
-   ═══════════════════════════════════════ */
-.playlist-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Philosopher', sans-serif;
-  font-size: 1.05em;
-  color: var(--gold-light);
-  letter-spacing: 0.04em;
-  margin-bottom: 14px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(197,165,90,0.2);
-}
-
-.playlist-input-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.playlist-input {
-  width: 100%;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(197,165,90,0.2);
-  border-radius: 10px;
-  padding: 10px 14px;
-  color: var(--parchment);
-  font-family: 'Philosopher', sans-serif;
-  font-size: 0.9em;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.playlist-input:focus {
-  border-color: rgba(197,165,90,0.5);
-}
-
-.playlist-input::placeholder {
-  color: var(--text-muted);
-  opacity: 0.7;
-}
-
-.playlist-add-btn {
-  width: 100%;
-  padding: 10px;
-  background: rgba(197,165,90,0.12);
-  border: 1px solid rgba(197,165,90,0.3);
-  border-radius: 10px;
-  color: var(--gold);
-  font-family: 'Philosopher', sans-serif;
-  font-size: 0.9em;
-  letter-spacing: 0.06em;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.playlist-add-btn:hover {
-  background: rgba(197,165,90,0.22);
-}
-
-.playlist-items {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.playlist-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 10px 14px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(197,165,90,0.12);
-  border-radius: 10px;
-}
-
-.playlist-item-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.playlist-item-song {
-  font-size: 0.9em;
-  color: var(--parchment);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.playlist-item-link {
-  display: inline-block;
-  margin-top: 3px;
-  font-size: 0.75em;
-  color: var(--gold-dim);
-  text-decoration: none;
-  opacity: 0.8;
-}
-
-.playlist-item-link:hover {
-  opacity: 1;
-  color: var(--gold);
-}
-
-.playlist-item-remove {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  font-size: 1em;
-  cursor: pointer;
-  opacity: 0.5;
-  padding: 2px 6px;
-  transition: opacity 0.2s;
-  flex-shrink: 0;
-}
-
-.playlist-item-remove:hover {
-  opacity: 1;
-  color: #e07070;
-}
-
-.playlist-empty {
-  font-size: 0.82em;
-  color: var(--text-muted);
-  text-align: center;
-  padding: 16px;
-  font-style: italic;
-  opacity: 0.7;
-}
-
 .about-practice-panel {
   width: 100%;
-  max-width: 680px;
+  max-width: 480px;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s cubic-bezier(0.2, 0, 0, 1), padding 0.3s ease, margin 0.3s ease;
@@ -1884,8 +1751,8 @@ body {
 
 .about-practice-panel.open {
   max-height: 4000px;
-  padding: 52px 28px;
-  margin-bottom: 14px;
+  padding: 22px;
+  margin-bottom: 24px;
   overflow-y: auto;
 }
 
@@ -1919,8 +1786,8 @@ body {
 }
 
 .about-section p {
-  font-size: 1.05em;
-  line-height: 1.9;
+  font-size: 0.9em;
+  line-height: 1.85;
   color: var(--text-muted);
 }
 
@@ -2645,27 +2512,6 @@ body {
     </div>
   </div>
 
-  <!-- Music & Lyric Therapy — Weekly Playlist Builder -->
-  <div id="playlistSection" style="display:none; width:100%; max-width:480px; margin-top:8px; margin-bottom:32px;">
-    <div class="playlist-header">
-      <span>🎵</span>
-      <span>My Week <span id="playlistWeekNum">1</span> Playlist</span>
-    </div>
-    <div class="playlist-input-group">
-      <input type="text" id="playlistSong" placeholder="Song title — Artist" class="playlist-input" />
-      <input type="url" id="playlistUrl" placeholder="Link: YouTube, Spotify, Apple Music…" class="playlist-input" />
-      <button onclick="addPlaylistItem()" class="playlist-add-btn">+ Add</button>
-    </div>
-    <div id="ytPlayerWrap" style="display:none; width:100%; margin-bottom:16px; border-radius:12px; overflow:hidden; border:1px solid rgba(197,165,90,0.2);">
-    <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:rgba(0,0,0,0.3);">
-      <span id="ytPlayerTitle" style="font-size:0.8em; color:var(--gold-dim); font-family:'Philosopher',sans-serif; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex:1;"></span>
-      <button onclick="closeYTPlayer()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:1em; padding:0 4px; margin-left:8px;">✕</button>
-    </div>
-    <div id="ytPlayerEl"></div>
-  </div>
-  <div id="playlistItems" class="playlist-items"></div>
-  <div id="playlistEmpty" class="playlist-empty">Your weekly playlist lives here. Add songs that resonate with this week's theme.</div>
-
   <!-- Bottom back button (mirrors top) -->
   <button class="back-btn back-btn-bottom" onclick="goBackFromPractice()">← Back</button>
 </div>
@@ -2919,190 +2765,23 @@ let currentWeek = 3;
 // ═══════════════════════════════════════
 // NAVIGATION
 // ═══════════════════════════════════════
-window.initCardAudio = function (src, label) {
-  window.stopCardAudio();
-  label = label || 'Chant';
-  var _audio = new Audio(src);
-  _audio.loop = true;
-  _audio.preload = 'auto';
-  _audio.setAttribute('disableRemotePlayback','');
-  var btn = document.createElement('button');
-  btn.id = 'se-audio-toggle';
-  btn.style.cssText = 'position:fixed;top:1rem;right:1rem;z-index:9999;padding:0.35em 0.75em;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.35);border-radius:999px;color:#fff;font-size:0.75rem;cursor:pointer;';
-  btn.textContent = '⏸ ' + label;
-  btn.onclick = function() {
-    if (_audio.paused) { _audio.play(); btn.textContent = '⏸ ' + label; }
-    else { _audio.pause(); btn.textContent = '▶ ' + label; }
-  };
-  document.body.appendChild(btn);
-  _audio.play();
-  window._seAudio = _audio;
-};
+// Ambient card audio engine lives at the bottom of the file (IIFE).
+// Defensive stubs in case any code path calls these before that script
+// has executed (the real implementations will replace these on load).
+window.initCardAudio = window.initCardAudio || function () {};
+window.stopCardAudio = window.stopCardAudio || function () {};
 
-// ═══════════════════════════════════════
-// MUSIC & LYRIC THERAPY — PLAYLIST BUILDER
-// ═══════════════════════════════════════
-// ═══════════════════════════════════════
-// YOUTUBE EMBEDDED PLAYER
-// ═══════════════════════════════════════
-var ytPlayer = null;
-var ytAPIReady = false;
-
-function onYouTubeIframeAPIReady() {
-  ytAPIReady = true;
-}
-
-function extractYTVideoId(url) {
-  var match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/);
-  return match ? match[1] : null;
-}
-
-function playYouTubeInApp(url, songTitle) {
-  var videoId = extractYTVideoId(url);
-  if (!videoId || !ytAPIReady) {
-    window.open(url, '_blank', 'noopener');
-    return;
-  }
-  var wrap = document.getElementById('ytPlayerWrap');
-  document.getElementById('ytPlayerTitle').textContent = songTitle;
-  wrap.style.display = 'block';
-
-  // Reset container
-  document.getElementById('ytPlayerEl').innerHTML = '';
-  if (ytPlayer) { try { ytPlayer.destroy(); } catch(e) {} ytPlayer = null; }
-
-  ytPlayer = new YT.Player('ytPlayerEl', {
-    height: '220',
-    width: '100%',
-    videoId: videoId,
-    playerVars: { autoplay: 1, rel: 0, modestbranding: 1, playsinline: 1 },
-    events: {
-      onStateChange: function(e) {
-        // State 0 = ended — close the player automatically
-        if (e.data === YT.PlayerState.ENDED) {
-          closeYTPlayer();
-        }
-      }
-    }
-  });
-}
-
-function closeYTPlayer() {
-  if (ytPlayer) { try { ytPlayer.stopVideo(); ytPlayer.destroy(); } catch(e) {} ytPlayer = null; }
-  var wrap = document.getElementById('ytPlayerWrap');
-  if (wrap) wrap.style.display = 'none';
-  document.getElementById('ytPlayerEl').innerHTML = '';
-}
-
-function getPlaylistKey(week) {
-  return 'se_playlist_week_' + week;
-}
-
-function detectPlatform(url) {
-  if (!url) return null;
-  if (url.includes('youtube') || url.includes('youtu.be')) return { label: '▶ YouTube', icon: '🎬' };
-  if (url.includes('spotify')) return { label: '♪ Spotify', icon: '🎧' };
-  if (url.includes('apple')) return { label: '♪ Apple Music', icon: '🍎' };
-  if (url.includes('soundcloud')) return { label: '♪ SoundCloud', icon: '☁️' };
-  if (url.includes('tidal')) return { label: '♪ Tidal', icon: '🌊' };
-  return { label: '🔗 Open link', icon: '🔗' };
-}
-
-function renderPlaylist(week) {
-  const key = getPlaylistKey(week);
-  let items = [];
-  try { items = JSON.parse(localStorage.getItem(key)) || []; } catch(e) {}
-  const container = document.getElementById('playlistItems');
-  const empty = document.getElementById('playlistEmpty');
-  container.innerHTML = '';
-  if (items.length === 0) {
-    empty.style.display = 'block';
-    return;
-  }
-  empty.style.display = 'none';
-  items.forEach(function(item, idx) {
-    const el = document.createElement('div');
-    el.className = 'playlist-item';
-    const platform = detectPlatform(item.url);
-    var isYT = item.url && (item.url.includes('youtube') || item.url.includes('youtu.be'));
-    var linkHtml = '';
-    if (item.url && platform) {
-      if (isYT) {
-        linkHtml = '<a href="#" onclick="playYouTubeInApp(\'' + item.url.replace(/'/g, "\\'") + '\',\'' + item.song.replace(/'/g, "\\'") + '\'); return false;" class="playlist-item-link">' + platform.icon + ' ' + platform.label + '</a>';
-      } else {
-        linkHtml = '<a href="' + item.url + '" target="_blank" rel="noopener" class="playlist-item-link">' + platform.icon + ' ' + platform.label + '</a>';
-      }
-    }
-    el.innerHTML =
-      '<div class="playlist-item-info">' +
-        '<div class="playlist-item-song">' + item.song + '</div>' +
-        linkHtml +
-      '</div>' +
-      '<button class="playlist-item-remove" onclick="removePlaylistItem(' + week + ',' + idx + ')" title="Remove">✕</button>';
-    container.appendChild(el);
-  });
-}
-
-function addPlaylistItem() {
-  const songInput = document.getElementById('playlistSong');
-  const urlInput  = document.getElementById('playlistUrl');
-  const song = (songInput.value || '').trim();
-  const url  = (urlInput.value  || '').trim();
-  if (!song) { songInput.focus(); return; }
-  const key = getPlaylistKey(currentWeek);
-  let items = [];
-  try { items = JSON.parse(localStorage.getItem(key)) || []; } catch(e) {}
-  items.push({ song: song, url: url });
-  localStorage.setItem(key, JSON.stringify(items));
-  songInput.value = '';
-  urlInput.value  = '';
-  songInput.focus();
-  renderPlaylist(currentWeek);
-}
-
-function removePlaylistItem(week, idx) {
-  const key = getPlaylistKey(week);
-  let items = [];
-  try { items = JSON.parse(localStorage.getItem(key)) || []; } catch(e) {}
-  items.splice(idx, 1);
-  localStorage.setItem(key, JSON.stringify(items));
-  renderPlaylist(week);
-}
-
-window.stopCardAudio = function () {
-  if (window._seAudio) { window._seAudio.pause(); window._seAudio.src = ''; window._seAudio = null; }
-  var el = document.getElementById('se-audio-toggle');
-  if (el) el.remove();
-};
-  window.initCardAudio = function (src, label) {
-  window.stopCardAudio();
-  label = label || 'Chant';
-  var _audio = new Audio(src);
-  _audio.loop = true;
-  _audio.preload = 'auto';
-  _audio.setAttribute('disableRemotePlayback','');
-  var btn = document.createElement('button');
-  btn.id = 'se-audio-toggle';
-  btn.style.cssText = 'position:fixed;top:1rem;right:1rem;z-index:9999;padding:0.35em 0.75em;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.35);border-radius:999px;color:#fff;font-size:0.75rem;cursor:pointer;';
-  btn.textContent = '⏸ ' + label;
-  btn.onclick = function() {
-    if (_audio.paused) { _audio.play(); btn.textContent = '⏸ ' + label; }
-    else { _audio.pause(); btn.textContent = '▶ ' + label; }
-  };
-  document.body.appendChild(btn);
-  _audio.play();
-  window._seAudio = _audio;
-};
-
-window.stopCardAudio = function () {
-  if (window._seAudio) { window._seAudio.pause(); window._seAudio.src = ''; window._seAudio = null; }
-  var el = document.getElementById('se-audio-toggle');
-  if (el) el.remove();
-};function showScreen(id) {
-  // Stop any playing audio when navigating away
+  function showScreen(id) {
+  // Stop any playing speech audio when navigating away
   if (audioPlaying) stopAudio();
-  stopCardAudio();
-  
+
+  // Stop ambient chant ONLY when returning to home. This preserves the chant
+  // through the menu→practice transitions (e.g., reliquary tap → theme list
+  // → practice card view all keep the same chant playing).
+  if (id === 'homeScreen') {
+    stopCardAudio();
+  }
+
   previousScreen = currentScreen;
   document.getElementById(currentScreen).classList.remove('active');
   document.getElementById(id).classList.add('active');
@@ -3126,17 +2805,17 @@ const CLOISTER_URL = 'https://www.skool.com/soul-encounters-cloister-7706';
 const weekThemes = [
   { num: 1,  archetype: 'The Seeker',       psalm: 'Psalm 42',  wisdom: 'Desert Fathers & Mothers' },
   { num: 2,  archetype: 'The Innocent',      psalm: 'Psalm 131', wisdom: 'Julian of Norwich' },
-  { num: 3,  archetype: 'The Lost & In-Need',        psalm: 'Psalm 22',  wisdom: 'Job & Dark Night Tradition' },
+  { num: 3,  archetype: 'The Orphan',        psalm: 'Psalm 22',  wisdom: 'Job & Dark Night Tradition' },
   { num: 4,  archetype: 'The Warrior',       psalm: 'Psalm 144', wisdom: 'Ignatius of Loyola' },
   { num: 5,  archetype: 'The Lover',         psalm: 'Psalm 45',  wisdom: 'Bernard of Clairvaux' },
-  { num: 6,  archetype: 'Growing Stronger',  psalm: 'Psalm 139', wisdom: 'Meister Eckhart' },
+  { num: 6,  archetype: 'The Shapeshifter',  psalm: 'Psalm 139', wisdom: 'Meister Eckhart' },
   { num: 7,  archetype: 'Death & Rebirth',   psalm: 'Psalm 88',  wisdom: 'John of the Cross' },
   { num: 8,  archetype: 'The Magician',      psalm: 'Psalm 104', wisdom: 'Hildegard of Bingen' },
-  { num: 9,  archetype: 'The Balanced Leader',        psalm: 'Psalm 72',  wisdom: 'Augustine & Aquinas' },
+  { num: 9,  archetype: 'The Ruler',         psalm: 'Psalm 72',  wisdom: 'Augustine & Aquinas' },
   { num: 10, archetype: 'The Caregiver',     psalm: 'Psalm 23',  wisdom: 'Henri Nouwen' },
   { num: 11, archetype: 'The Creator',       psalm: 'Psalm 19',  wisdom: 'Bede Griffiths' },
   { num: 12, archetype: 'The Hero',          psalm: 'Psalm 18',  wisdom: 'Thomas Merton' },
-  { num: 13, archetype: 'The Wise Elder',          psalm: 'Psalm 90',  wisdom: 'Evagrius Ponticus' }
+  { num: 13, archetype: 'The Sage',          psalm: 'Psalm 90',  wisdom: 'Evagrius Ponticus' }
 ];
 
 const weekData = {
@@ -3912,13 +3591,18 @@ function openPracticeMenu(type) {
     list.appendChild(el);
   });
   
- showScreen('practiceMenuScreen');
+  showScreen('practiceMenuScreen');
 
-  // Ambient audio — fires when the card view opens
-if (type === 'psalmody') {
+  // Ambient chant — fires when the reliquary card is tapped, persists through
+  // theme selection and into the practice card view. Stopped automatically by
+  // showScreen() only when navigating back to homeScreen.
+  // File assignments:
+  //   Psalmody → Gregorian chant (Lux Aeterna)
+  //   Buddhist Integration → Buddhist chant (Mountain Breath Mantra)
+  if (type === 'psalmody') {
     initCardAudio('Lux%20Aeterna%20in%20Aeternum.mp3', 'Chant');
   } else if (type === 'buddhist') {
-    initCardAudio('Mountain%20Breath%20Mantra.mp3', 'Mantra');
+    initCardAudio('Mountain%20Breath%20Mantra.mp3', 'Chant');
   }
 }
 
@@ -4152,7 +3836,7 @@ const practiceConfig = {
   archetype:   { audio: true,  breath: false }, // Archetype readings — listen & absorb
   imagination: { audio: false, breath: true  }, // Inner theater — timed meditation
   buddhist:    { audio: false, breath: true  }, // Seated practice — timed meditation
-  music:       { audio: false, breath: false }, // Active listening — playlist-driven
+  music:       { audio: false, breath: true  }, // Active listening session — timed
   blake:       { audio: false, breath: false }, // Poetry readings — read & absorb (no audio player)
   journal:     { audio: false, breath: true  }  // Writing session — timed
 };
@@ -4222,18 +3906,8 @@ function openPractice(title, desc, type) {
     breathTimer.style.display = 'none';
   }
   
- resetTimer();
+  resetTimer();
   loadAboutPanel(type);
-
-  // Show playlist for Music & Lyric Therapy only
-  const playlistSection = document.getElementById('playlistSection');
-  if (type === 'music') {
-    playlistSection.style.display = 'block';
-    document.getElementById('playlistWeekNum').textContent = currentWeek;
-    renderPlaylist(currentWeek);
-  } else {
-    playlistSection.style.display = 'none';
-  }
   
   // Update lectio divina section (psalmody only)
   const lectioSection = document.getElementById('lectioSection');
@@ -4244,6 +3918,9 @@ function openPractice(title, desc, type) {
   }
   
   showScreen('practiceScreen');
+  // Note: ambient chant is started by openPracticeMenu (on reliquary tap)
+  // and persists through this screen transition. showScreen() only stops it
+  // when navigating back to homeScreen.
 }
 
 // ═══════════════════════════════════════
@@ -4757,312 +4434,4 @@ setInterval(() => {
   document.querySelectorAll('.breath-word').forEach(el => {
     el.style.opacity = 0;
     setTimeout(() => {
-      el.textContent = breathWords[breathIndex];
-      el.style.opacity = 1;
-    }, 400);
-  });
-}, 4000);
-
-document.querySelectorAll('.breath-word').forEach(el => {
-  el.style.transition = 'opacity 0.4s ease';
-});
-
-// ═══════════════════════════════════════
-// JOURNEY SCREEN — Dynamic Practice Rows
-// Built in JS to avoid HTML attribute quote-escaping bugs
-// ═══════════════════════════════════════
-// ═══════════════════════════════════════
-// PRACTICE SPACE NAMES — Evocative place-names for each practice
-// These appear on the Journey screen alongside functional names
-// ═══════════════════════════════════════
-const practiceSpaceNames = {
-  psalmody:    "Peterson's Porch",
-  wisdom:      'The Merton Library',
-  archetype:   "Jung's Study",
-  imagination: 'Bollingen Tower',
-  buddhist:    "Gyatso's Garden",
-  music:       'The Listening Room',
-  blake:       "Blake's Visionary Forge",
-  journal:     "The Blank Page"
-};
-
-const week3Practices = [
-  {
-    icon: '📖', type: 'psalmody', name: 'Psalmody & Scripture', done: true,
-    title: 'Psalmody: Psalm 22',
-    desc: '"My God, my God, why have you forsaken me?" — The psalm Jesus prayed from the cross. This is not despair; it is the most honest prayer ever uttered. Pray it slowly. Let the words find the places in you that echo this cry.'
-  },
-  {
-    icon: '📜', type: 'wisdom', name: 'Historical Wisdom', done: true,
-    title: 'The Orphan in History',
-    desc: "From the Desert Fathers' dark night to Merton's existential loneliness in the hermitage — the great mystics knew that God sometimes withdraws so we can discover the divine presence was never external to begin with."
-  },
-  {
-    icon: '🏛️', type: 'archetype', name: 'Archetype & Shadow', done: false,
-    title: 'The Orphan Archetype',
-    desc: 'The Orphan carries the wound of abandonment and the gift of radical self-reliance. Shadow: victimhood, learned helplessness. Gold: the discovery that your deepest aloneness is where God has been waiting.'
-  },
-  {
-    icon: '🌟', type: 'imagination', name: 'Active Imagination', done: false,
-    title: 'Active Imagination: The Empty Room',
-    desc: "Imagine a room emptied of everything familiar. You are alone in it. Now — who enters? Sit with whatever figure appears. Don't rush the dialogue. Ask: \"What do you need me to know?\""
-  },
-  {
-    icon: '☸️', type: 'buddhist', name: 'Buddhist Integration', done: false,
-    title: 'Tonglen: Breathing In Suffering',
-    desc: "In tonglen practice, we breathe in the world's pain and breathe out compassion. The Orphan's wound becomes a channel through which healing flows — not despite the suffering, but through it."
-  },
-  {
-    icon: '🎵', type: 'music', name: 'Music & Lyric Therapy', done: false,
-    title: 'Music Therapy: Songs of Exile',
-    desc: 'Curate 3–5 songs that carry the feeling of longing, exile, or sacred homesickness. Listen actively — not as background music, but as a practice. What lyrics pierce through your defenses?'
-  },
-  {
-    icon: '☄️', type: 'blake', name: 'William Blake', done: false,
-    title: 'Blake: The Chimney Sweeper',
-    desc: "Blake's orphaned chimney sweeps dream of liberation while trapped in soot and darkness. Innocence endures within experience. Where does your innocence still live beneath the ash?"
-  },
-  {
-    icon: '📝', type: 'journal', name: 'Reflective Journaling', done: false,
-    title: 'Journaling: The Letter You Never Sent',
-    desc: "Write a letter to the person, place, or version of yourself you feel most abandoned by. Don't edit. Don't perform. Let grief have its full say on the page."
-  }
-];
-
-function switchWeek(n) {
-  currentWeek = n;
-  // Update visual state of lantern indicators
-  document.querySelectorAll('.progress-week').forEach((el, i) => {
-    el.className = 'progress-week';
-    if (i + 1 < n) el.classList.add('completed');
-    if (i + 1 === n) el.classList.add('current');
-  });
-  // Update label
-  document.querySelector('.progress-label').textContent = 'Week ' + n + ' of 13';
-
-  // Fix Bug 1: Update week-theme AND week-archetype from weekThemes data
-  const theme = weekThemes.find(t => t.num === n);
-  if (theme) {
-    document.querySelector('.week-theme').textContent = theme.archetype;
-    document.querySelector('.week-archetype').textContent = theme.psalm + ' · ' + theme.wisdom;
-  }
-  document.querySelector('.week-number').textContent = 'Week ' + n + ' of 13';
-
-  // Fix Bug 2: Rebuild practices from the correct week's data
-  buildJourneyPractices(n);
-}
-
-function buildJourneyPractices(weekNum) {
-  weekNum = weekNum || currentWeek;
-  const container = document.getElementById('practicesList');
-  container.innerHTML = '';
-
-  const practiceTypes = [
-    { key: 'psalmody',    icon: '📖', name: 'Psalmody & Scripture' },
-    { key: 'wisdom',      icon: '📜', name: 'Historical Wisdom' },
-    { key: 'archetype',   icon: '🏛️', name: 'Archetype & Shadow' },
-    { key: 'imagination', icon: '🌟', name: 'Active Imagination' },
-    { key: 'buddhist',    icon: '☸️', name: 'Buddhist Integration' },
-    { key: 'music',       icon: '🎵', name: 'Music & Lyric Therapy' },
-    { key: 'blake',       icon: '☄️', name: 'William Blake' },
-    { key: 'journal',     icon: '📝', name: 'Reflective Journaling' }
-  ];
-
-  const wd = weekData[weekNum];
-  practiceTypes.forEach((p, idx) => {
-    const practiceContent = wd && wd.practices && wd.practices[p.key];
-    const practiceShortDesc = {
-      psalmody:    "The psalms are humanity's oldest therapy session — three thousand years of crying out and singing praise. Pray them slowly, in the spirit of lectio divina. Let God's word read you.",
-      wisdom:      "Spiritual archaeology — digging up treasures that wise souls have buried for us to find. Walk with Augustine, sit with Julian of Norwich, argue theology with Merton.",
-      archetype:   "Which character is running the show today? Meet your inner cast — the Hero, the Orphan, the Trickster — and discover what they're protecting.",
-      imagination: "Close your eyes and step into the theater of the psyche. Meet the figures who wait there. Let the dialogue unfold — unscripted, uncensored, alive.",
-      buddhist:    "Settle into silence. Breath by breath, thought by thought, come home to the present moment. Nothing to fix, nothing to achieve — just being.",
-      music:       "Let the music do what words alone cannot. Listen, curate, create. The right song at the right moment can unlock what months of talk cannot.",
-      blake:       "Enter the visionary's world. Blake saw angels in trees and eternity in an hour. Let his fire rekindle your capacity for wonder.",
-      journal:     "The blank page is the most honest mirror. Write without editing, without censoring — let what needs to emerge find its way to the surface."
-    };
-    const title = practiceContent ? practiceContent.title : p.name;
-    const desc  = practiceShortDesc[p.key] || '';
-    const row = document.createElement('div');
-    row.className = 'practice-row';
-    row.addEventListener('click', () => openPractice(title, desc, p.key));
-    row.innerHTML = `
-      <div class="practice-row-icon octave-icon-${idx + 1}">${p.icon}</div>
-      <div class="practice-row-name">${p.name}</div>
-      <div class="practice-row-check"></div>
-    `;
-    container.appendChild(row);
-  });
-}
-
-// Build on load
-buildJourneyPractices();
-</script>
-<script>
-/* ============================================================
-   SOUL ENCOUNTERS — AMBIENT CARD AUDIO ENGINE
-   ============================================================ */
-(function () {
-  'use strict';
-
-  let _audio       = null;
-  let _toggleBtn   = null;
-  let _fadeTimer   = null;
-
-  const TARGET_VOLUME  = 0.28;
-  const FADE_DURATION  = 2000;
-  const BTN_ID         = 'se-audio-toggle';
-
-  const ICON_PAUSE = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>`;
-  const ICON_PLAY  = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>`;
-
-  const BTN_STYLES = `
-    position:fixed;top:1rem;right:1rem;z-index:9999;
-    display:flex;align-items:center;gap:0.4em;
-    padding:0.35em 0.75em;
-    background:rgba(255,255,255,0.18);
-    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-    border:1px solid rgba(255,255,255,0.35);border-radius:999px;
-    color:#fff;font-size:0.75rem;font-family:inherit;
-    letter-spacing:0.04em;cursor:pointer;
-    transition:background 0.2s,opacity 0.2s;
-    box-shadow:0 2px 8px rgba(0,0,0,0.18);
-  `;
-
-  function _createToggleButton(label) {
-    const btn = document.createElement('button');
-    btn.id = BTN_ID;
-    btn.setAttribute('aria-label', 'Pause ambient audio');
-    btn.style.cssText = BTN_STYLES;
-    btn.innerHTML = ICON_PAUSE + `<span>${label}</span>`;
-    btn.addEventListener('mouseover', () => btn.style.background = 'rgba(255,255,255,0.28)');
-    btn.addEventListener('mouseout',  () => btn.style.background = 'rgba(255,255,255,0.18)');
-    btn.addEventListener('click', () => {
-      if (_audio.paused) {
-        _audio.play();
-        btn.setAttribute('aria-label', 'Pause ambient audio');
-        btn.innerHTML = ICON_PAUSE + `<span>${label}</span>`;
-      } else {
-        _audio.pause();
-        btn.setAttribute('aria-label', 'Play ambient audio');
-        btn.innerHTML = ICON_PLAY + `<span>${label}</span>`;
-      }
-    });
-    return btn;
-  }
-
-  function _fadeIn(audioEl) {
-    audioEl.volume = 0;
-    const start = performance.now();
-    function step(now) {
-      const elapsed  = now - start;
-      const progress = Math.min(elapsed / FADE_DURATION, 1);
-      audioEl.volume = TARGET_VOLUME * (1 - Math.pow(1 - progress, 3));
-      if (progress < 1) _fadeTimer = requestAnimationFrame(step);
-    }
-    _fadeTimer = requestAnimationFrame(step);
-  }
-
-  window.initCardAudio = function (src, label) {
-    stopCardAudio();
-    label = label || 'Chant';
-    _audio         = new Audio(src);
-_audio.loop    = true;
-    _audio.preload = 'auto';
-    _audio.setAttribute('disableRemotePlayback', '');
-    const p = _audio.play();
-    if (p !== undefined) {
-      p.then(() => _fadeIn(_audio))
-       .catch(() => {
-         if (_toggleBtn) {
-           _toggleBtn.innerHTML = ICON_PLAY + `<span>${label}</span>`;
-           _toggleBtn.setAttribute('aria-label', 'Play ambient audio');
-         }
-       });
-    }
-    _toggleBtn = _createToggleButton(label);
-    document.body.appendChild(_toggleBtn);
-  };
-
-  window.stopCardAudio = function () {
-    if (_fadeTimer) { cancelAnimationFrame(_fadeTimer); _fadeTimer = null; }
-    if (_audio)     { _audio.pause(); _audio.src = ''; _audio = null; }
-    const el = document.getElementById(BTN_ID);
-    if (el) el.remove();
-    _toggleBtn = null;
-  };
-
-})();
-</script>
-<script>
-(function () {
-  'use strict';
-  let _audio = null, _toggleBtn = null, _fadeTimer = null;
-  const TARGET_VOLUME = 0.28, FADE_DURATION = 2000, BTN_ID = 'se-audio-toggle';
-  const ICON_PAUSE = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
-  const ICON_PLAY = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>';
-  const BTN_STYLES = 'position:fixed;top:1rem;right:1rem;z-index:9999;display:flex;align-items:center;gap:0.4em;padding:0.35em 0.75em;background:rgba(255,255,255,0.18);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.35);border-radius:999px;color:#fff;font-size:0.75rem;font-family:inherit;letter-spacing:0.04em;cursor:pointer;transition:background 0.2s;box-shadow:0 2px 8px rgba(0,0,0,0.18);';
-  function _createToggleButton(label) {
-    const btn = document.createElement('button');
-    btn.id = BTN_ID;
-    btn.setAttribute('aria-label','Pause ambient audio');
-    btn.style.cssText = BTN_STYLES;
-    btn.innerHTML = ICON_PAUSE + '<span>' + label + '</span>';
-    btn.addEventListener('mouseover', () => btn.style.background = 'rgba(255,255,255,0.28)');
-    btn.addEventListener('mouseout',  () => btn.style.background = 'rgba(255,255,255,0.18)');
-    btn.addEventListener('click', () => {
-      if (_audio.paused) {
-        _audio.play();
-        btn.setAttribute('aria-label','Pause ambient audio');
-        btn.innerHTML = ICON_PAUSE + '<span>' + label + '</span>';
-      } else {
-        _audio.pause();
-        btn.setAttribute('aria-label','Play ambient audio');
-        btn.innerHTML = ICON_PLAY + '<span>' + label + '</span>';
-      }
-    });
-    return btn;
-  }
-  function _fadeIn(audioEl) {
-    audioEl.volume = 0;
-    const start = performance.now();
-    function step(now) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / FADE_DURATION, 1);
-      audioEl.volume = TARGET_VOLUME * (1 - Math.pow(1 - progress, 3));
-      if (progress < 1) _fadeTimer = requestAnimationFrame(step);
-    }
-    _fadeTimer = requestAnimationFrame(step);
-  }
-  window.initCardAudio = function (src, label) {
-    stopCardAudio();
-    label = label || 'Chant';
-    _audio = new Audio(src);
-    _audio.loop = true;
-    _audio.preload = 'auto';
-    _audio.setAttribute('disableRemotePlayback','');
-    const p = _audio.play();
-    if (p !== undefined) {
-      p.then(() => _fadeIn(_audio))
-       .catch(() => {
-         if (_toggleBtn) {
-           _toggleBtn.innerHTML = ICON_PLAY + '<span>' + label + '</span>';
-           _toggleBtn.setAttribute('aria-label','Play ambient audio');
-         }
-       });
-    }
-    _toggleBtn = _createToggleButton(label);
-    document.body.appendChild(_toggleBtn);
-  };
-  window.stopCardAudio = function () {
-    if (_fadeTimer) { cancelAnimationFrame(_fadeTimer); _fadeTimer = null; }
-    if (_audio) { _audio.pause(); _audio.src = ''; _audio = null; }
-    const el = document.getElementById(BTN_ID);
-    if (el) el.remove();
-    _toggleBtn = null;
-  };
-})();
-</script>
-<script src="https://www.youtube.com/iframe_api"></script>
-</body>
-</html>
+      el.textContent = breathWor
