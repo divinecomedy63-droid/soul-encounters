@@ -1841,6 +1841,326 @@ body {
   opacity: 0.6;
 }
 
+/* ═══════════════════════════════════════
+   TUTORIAL MODAL — replaces inline expand panel
+   ═══════════════════════════════════════ */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 90;
+}
+
+.modal-backdrop.open { opacity: 1; pointer-events: auto; }
+
+.tutorial-modal {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, var(--warm-dark) 0%, var(--deep) 100%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  overflow: hidden;
+}
+
+.tutorial-modal.open { transform: translateY(0); }
+
+@media (min-width: 720px) {
+  .tutorial-modal {
+    inset: auto;
+    left: 50%;
+    top: 50%;
+    width: 680px;
+    max-width: calc(100vw - 48px);
+    height: min(86vh, 860px);
+    border-radius: 16px;
+    border: 1px solid rgba(197,165,90,0.25);
+    box-shadow: 0 24px 70px -10px rgba(0,0,0,0.7), 0 0 60px rgba(197,165,90,0.12);
+    transform: translate(-50%, -50%) scale(0.96);
+    opacity: 0;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+  .tutorial-modal.open {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid rgba(197,165,90,0.18);
+  background: linear-gradient(180deg, rgba(197,165,90,0.06) 0%, transparent 100%);
+  flex-shrink: 0;
+}
+@media (min-width: 720px) { .modal-header { padding: 18px 24px 14px; } }
+
+.modal-title {
+  font-family: 'Philosopher', sans-serif;
+  font-weight: 400;
+  font-size: 0.78em;
+  color: var(--gold);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+.modal-close {
+  background: transparent;
+  border: 1px solid rgba(197,165,90,0.4);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--gold-light);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.modal-close:hover,
+.modal-close:focus-visible {
+  background: rgba(197,165,90,0.15);
+  border-color: var(--gold);
+  color: var(--parchment);
+  outline: none;
+}
+
+.modal-close svg { width: 16px; height: 16px; }
+.modal-spacer { width: 38px; flex-shrink: 0; }
+
+.audio-player {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: linear-gradient(180deg, rgba(197,165,90,0.05) 0%, transparent 100%);
+  border-bottom: 1px solid rgba(197,165,90,0.15);
+  flex-shrink: 0;
+}
+@media (min-width: 720px) { .audio-player { padding: 16px 24px; } }
+
+.modal-play-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--deep);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 16px rgba(197,165,90,0.4);
+}
+
+.modal-play-btn:hover {
+  background: var(--gold-light);
+  box-shadow: 0 0 24px rgba(197,165,90,0.55);
+}
+.modal-play-btn:active { transform: scale(0.96); }
+.modal-play-btn svg { width: 16px; height: 16px; }
+.modal-play-btn .icon-pause { display: none; }
+.modal-play-btn.playing .icon-play { display: none; }
+.modal-play-btn.playing .icon-pause { display: block; }
+
+.audio-meta { flex: 1; min-width: 0; }
+
+.audio-label {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 0.65em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin: 0 0 4px;
+}
+
+.audio-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05em;
+  color: var(--parchment);
+  margin: 0 0 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.progress-row { display: flex; align-items: center; gap: 10px; }
+
+.progress-bar {
+  flex: 1;
+  height: 3px;
+  background: rgba(197,165,90,0.18);
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+.time-display {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 0.7em;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  min-width: 64px;
+  text-align: right;
+}
+
+.audio-status {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.82em;
+  color: var(--text-muted);
+  margin: 6px 0 0;
+  display: none;
+}
+.audio-status.show { display: block; }
+
+.modal-content {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 26px 20px 80px;
+  scroll-behavior: smooth;
+}
+@media (min-width: 720px) { .modal-content { padding: 34px 48px 80px; } }
+
+/* Lectio Divina inset inside modal — Psalmody only */
+.lectio-inset {
+  background: linear-gradient(135deg, rgba(197,165,90,0.08) 0%, rgba(42,33,24,0.5) 100%);
+  border: 1px solid rgba(197,165,90,0.28);
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+@media (min-width: 720px) { .lectio-inset { padding: 26px 28px; } }
+
+.lectio-inset-title {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 0.82em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.lectio-inset-intro {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.05em;
+  color: var(--parchment-dim);
+  margin-bottom: 14px;
+}
+
+.lectio-inset-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: lectio;
+  text-align: left;
+}
+
+.lectio-inset-list li {
+  counter-increment: lectio;
+  font-family: 'Lora', serif;
+  font-size: 0.95em;
+  color: var(--parchment-dim);
+  line-height: 1.7;
+  padding: 8px 0 8px 32px;
+  position: relative;
+  border-top: 1px solid rgba(197,165,90,0.12);
+}
+
+.lectio-inset-list li:first-child { border-top: none; }
+
+.lectio-inset-list li::before {
+  content: counter(lectio);
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-dim);
+  color: var(--gold);
+  font-family: 'Philosopher', sans-serif;
+  font-size: 0.85em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* About sections scoped to modal — larger reading typography */
+.modal-content .about-section { margin-bottom: 24px; }
+.modal-content .about-section:last-of-type { margin-bottom: 32px; }
+.modal-content .about-section p {
+  font-family: 'Lora', serif;
+  font-size: 1em;
+  line-height: 1.85;
+  color: var(--text-light);
+}
+@media (min-width: 720px) { .modal-content .about-section p { font-size: 1.05em; } }
+.modal-content .about-section em { color: var(--parchment); font-style: italic; }
+.modal-content .about-section strong { color: var(--gold-light); font-weight: 600; }
+
+.modal-cloister-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  margin-top: 16px;
+  background: rgba(197,165,90,0.08);
+  border: 1px solid rgba(197,165,90,0.3);
+  border-radius: 28px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 0.95em;
+  color: var(--gold-light);
+  letter-spacing: 0.04em;
+}
+
+.modal-cloister-link:hover {
+  background: rgba(197,165,90,0.14);
+  border-color: var(--gold);
+  color: var(--parchment);
+}
+
+.modal-cloister-link .arrow { font-size: 1.1em; transition: transform 0.2s ease; }
+.modal-cloister-link:hover .arrow { transform: translateX(3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tutorial-modal, .modal-backdrop {
+    transition: none !important;
+  }
+}
+
 /* Return banner */
 .return-banner {
   width: 100%;
@@ -2464,29 +2784,10 @@ body {
     </div>
   </div>
 
-  <!-- Lectio Divina instructions — psalmody only, appears between content and tutorial -->
-  <div id="lectioSection" class="lectio-section" style="display:none;">
-    <div class="lectio-title">✦ Lectio Divina</div>
-    <p class="lectio-steps"><em>Read aloud, slowly, three times:</em></p>
-    <ol class="lectio-list">
-      <li>First reading — let the words wash over you</li>
-      <li>Second reading — notice which phrase stirs you</li>
-      <li>Third reading — rest in silence with that phrase. Let it pray you.</li>
-    </ol>
-  </div>
-
-  <!-- About This Practice — expandable orientation panel -->
-  <div class="about-practice-trigger" id="aboutTrigger" onclick="toggleAboutPanel()">
+  <!-- About This Practice — opens tutorial modal -->
+  <div class="about-practice-trigger" id="aboutTrigger" onclick="openTutorialModal()">
     <span class="about-trigger-text" id="aboutTriggerText">New to Psalmody?</span>
     <span class="about-trigger-arrow">▼</span>
-  </div>
-  <div class="about-practice-panel" id="aboutPanel">
-    <div id="aboutContent"></div>
-    <div class="about-cloister-link" onclick="openCloister()">
-      <span>⛪</span>
-      <span>Go deeper in the Cloister</span>
-      <span class="about-cloister-arrow">→</span>
-    </div>
   </div>
 
   <!-- Breathing circle + Timer -->
@@ -3648,10 +3949,14 @@ const practiceGuidanceContent = {
 
 // ═══════════════════════════════════════
 // ABOUT THIS PRACTICE — Foundational Guides
+// (now with unified audio companion + Lectio inset flag)
 // ═══════════════════════════════════════
 const aboutPracticeContent = {
   psalmody: {
     triggerText: 'New to Psalmody?',
+    showLectio: true,
+    audioTitle: 'Psalmody · Reading Companion',
+    audioSrc: 'audio/tutorials/tutorial-companion.mp3',
     sections: [
       {
         label: 'Where This Comes From',
@@ -3669,6 +3974,8 @@ const aboutPracticeContent = {
   },
   wisdom: {
     triggerText: 'New to this practice?',
+    audioTitle: 'Historical Wisdom · Reading Companion',
+    audioSrc: 'audio/tutorials/tutorial-companion.mp3',
     sections: [
       {
         label: 'Where This Comes From',
@@ -3686,6 +3993,8 @@ const aboutPracticeContent = {
   },
   archetype: {
     triggerText: 'New to Jungian archetypes?',
+    audioTitle: 'Archetypes · Reading Companion',
+    audioSrc: 'audio/tutorials/tutorial-companion.mp3',
     sections: [
       {
         label: 'Where This Comes From',
@@ -3703,6 +4012,8 @@ const aboutPracticeContent = {
   },
   imagination: {
     triggerText: 'New to Active Imagination?',
+    audioTitle: 'Active Imagination · Reading Companion',
+    audioSrc: 'audio/tutorials/tutorial-companion.mp3',
     sections: [
       {
         label: 'Where This Comes From',
@@ -3720,6 +4031,8 @@ const aboutPracticeContent = {
   },
   buddhist: {
     triggerText: 'New to Buddhist meditation?',
+    audioTitle: 'Buddhist Meditation · Reading Companion',
+    audioSrc: 'audio/tutorials/tutorial-companion.mp3',
     sections: [
       {
         label: 'Where This Comes From',
@@ -3737,6 +4050,8 @@ const aboutPracticeContent = {
   },
   music: {
     triggerText: 'New to Music & Lyric Therapy?',
+    audioTitle: 'Music & Lyric · Reading Companion',
+    audioSrc: 'audio/tutorials/tutorial-companion.mp3',
     sections: [
       {
         label: 'Where This Comes From',
@@ -3758,6 +4073,8 @@ const aboutPracticeContent = {
   },
   blake: {
     triggerText: 'New to William Blake?',
+    audioTitle: 'William Blake · Reading Companion',
+    audioSrc: 'audio/tutorials/tutorial-companion.mp3',
     sections: [
       {
         label: 'Where This Comes From',
@@ -3775,6 +4092,8 @@ const aboutPracticeContent = {
   },
   journal: {
     triggerText: 'New to reflective journaling?',
+    audioTitle: 'Reflective Journaling · Reading Companion',
+    audioSrc: 'audio/tutorials/tutorial-companion.mp3',
     sections: [
       {
         label: 'Where This Comes From',
@@ -3792,45 +4111,162 @@ const aboutPracticeContent = {
   }
 };
 
-function toggleAboutPanel() {
-  const trigger = document.getElementById('aboutTrigger');
-  const panel = document.getElementById('aboutPanel');
-  trigger.classList.toggle('open');
-  panel.classList.toggle('open');
-  if (panel.classList.contains('open')) {
-    setTimeout(() => trigger.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
-  }
-}
+let currentTutorialPractice = null;
 
-function loadAboutPanel(type) {
+// Called from openPractice() — stores the practice type and updates trigger text
+function setTutorialPractice(type) {
   const about = aboutPracticeContent[type];
   if (!about) {
     document.getElementById('aboutTrigger').style.display = 'none';
-    document.getElementById('aboutPanel').style.display = 'none';
+    currentTutorialPractice = null;
     return;
   }
-  
   document.getElementById('aboutTrigger').style.display = 'flex';
-  document.getElementById('aboutPanel').style.display = 'block';
   document.getElementById('aboutTriggerText').textContent = about.triggerText;
-  
-  // Close panel when switching practices
-  document.getElementById('aboutTrigger').classList.remove('open');
-  document.getElementById('aboutPanel').classList.remove('open');
-  
-  // Build content
+  currentTutorialPractice = type;
+}
+
+function buildModalContent(type) {
+  const about = aboutPracticeContent[type];
+  if (!about) return;
+
   let html = '';
+
+  // Lectio inset — Psalmody only
+  if (about.showLectio) {
+    html += `
+      <div class="lectio-inset">
+        <div class="lectio-inset-title">✦ Lectio Divina</div>
+        <p class="lectio-inset-intro">Read aloud, slowly, three times:</p>
+        <ol class="lectio-inset-list">
+          <li>First reading — let the words wash over you</li>
+          <li>Second reading — notice which phrase stirs you</li>
+          <li>Third reading — rest in silence with that phrase. Let it pray you.</li>
+        </ol>
+      </div>
+    `;
+  }
+
   about.sections.forEach((section, i) => {
-    html += `<div class="about-section">`;
-    html += `<div class="about-section-label">${section.label}</div>`;
-    html += `<p>${section.text}</p>`;
-    html += `</div>`;
+    html += `
+      <div class="about-section">
+        <div class="about-section-label">${section.label}</div>
+        <p>${section.text}</p>
+      </div>
+    `;
     if (i < about.sections.length - 1) {
       html += `<div class="about-divider"></div>`;
     }
   });
-  document.getElementById('aboutContent').innerHTML = html;
+
+  html += `
+    <div class="modal-cloister-link" onclick="window.open(CLOISTER_URL, '_blank')">
+      <span>⛪</span>
+      <span>Go deeper in the Cloister</span>
+      <span class="arrow">→</span>
+    </div>
+  `;
+
+  document.getElementById('modalContent').innerHTML = html;
+
+  // Configure audio for this practice
+  const audio = document.getElementById('modalTutorialAudio');
+  const audioSrcEl = document.getElementById('modalTutorialAudioSrc');
+  document.getElementById('modalAudioTitle').textContent = about.audioTitle;
+  if (audioSrcEl.src !== new URL(about.audioSrc, window.location.href).href) {
+    audioSrcEl.src = about.audioSrc;
+    audio.load();
+  }
 }
+
+let _modalLastFocus = null;
+function openTutorialModal() {
+  if (!currentTutorialPractice) return;
+  _modalLastFocus = document.activeElement;
+  buildModalContent(currentTutorialPractice);
+  document.getElementById('tutorialModal').classList.add('open');
+  document.getElementById('modalBackdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('modalContent').scrollTop = 0;
+  setTimeout(() => document.getElementById('modalClose').focus(), 300);
+}
+
+function closeTutorialModal() {
+  const audio = document.getElementById('modalTutorialAudio');
+  const playBtn = document.getElementById('modalPlayBtn');
+  document.getElementById('tutorialModal').classList.remove('open');
+  document.getElementById('modalBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+  if (audio && !audio.paused) {
+    audio.pause();
+    playBtn.classList.remove('playing');
+  }
+  if (_modalLastFocus) _modalLastFocus.focus();
+}
+
+// Backdrop click and Escape key close the modal
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('modalBackdrop').addEventListener('click', closeTutorialModal);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && document.getElementById('tutorialModal').classList.contains('open')) {
+      closeTutorialModal();
+    }
+  });
+
+  // Audio player wiring
+  const audio = document.getElementById('modalTutorialAudio');
+  const playBtn = document.getElementById('modalPlayBtn');
+  const progressBar = document.getElementById('modalProgressBar');
+  const progressFill = document.getElementById('modalProgressFill');
+  const timeDisplay = document.getElementById('modalTimeDisplay');
+  const audioStatus = document.getElementById('modalAudioStatus');
+
+  function fmt(s) {
+    if (!isFinite(s)) return '0:00';
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return `${m}:${sec.toString().padStart(2, '0')}`;
+  }
+
+  playBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      const p = audio.play();
+      if (p) {
+        p.then(() => {
+          playBtn.classList.add('playing');
+          audioStatus.classList.remove('show');
+        }).catch(() => {
+          audioStatus.textContent = 'Audio could not load.';
+          audioStatus.classList.add('show');
+        });
+      }
+    } else {
+      audio.pause();
+      playBtn.classList.remove('playing');
+    }
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    if (!audio.duration) return;
+    progressFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+    timeDisplay.textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration)}`;
+  });
+
+  audio.addEventListener('loadedmetadata', () => {
+    timeDisplay.textContent = `0:00 / ${fmt(audio.duration)}`;
+  });
+
+  audio.addEventListener('error', () => {
+    audioStatus.textContent = 'Audio could not load.';
+    audioStatus.classList.add('show');
+  });
+
+  progressBar.addEventListener('click', e => {
+    if (!audio.duration) return;
+    const rect = progressBar.getBoundingClientRect();
+    audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+  });
+});
 
 // Practices that show the audio player
 // ═══════════════════════════════════════
@@ -3914,15 +4350,7 @@ function openPractice(title, desc, type) {
   }
   
   resetTimer();
-  loadAboutPanel(type);
-  
-  // Update lectio divina section (psalmody only)
-  const lectioSection = document.getElementById('lectioSection');
-  if (type === 'psalmody') {
-    lectioSection.style.display = 'block';
-  } else {
-    lectioSection.style.display = 'none';
-  }
+  setTutorialPractice(type);
   
   showScreen('practiceScreen');
   // Note: ambient chant is started by openPracticeMenu (on reliquary tap)
@@ -4772,5 +5200,53 @@ _audio.loop    = true;
   }
 })();
 </script>
+
+<!-- ═══════════════════════════════════════
+     TUTORIAL MODAL
+     One modal element, content swapped per practice.
+     ═══════════════════════════════════════ -->
+<div class="modal-backdrop" id="modalBackdrop"></div>
+
+<div class="tutorial-modal" id="tutorialModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+
+  <div class="modal-header">
+    <div class="modal-spacer"></div>
+    <h2 class="modal-title" id="modalTitle">Reading Companion</h2>
+    <button class="modal-close" id="modalClose" aria-label="Close tutorial" onclick="closeTutorialModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <path d="M6 6L18 18M6 18L18 6"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="audio-player">
+    <button class="modal-play-btn" id="modalPlayBtn" aria-label="Play audio companion">
+      <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+      <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M6 4h4v16H6zM14 4h4v16h-4z"/>
+      </svg>
+    </button>
+    <div class="audio-meta">
+      <p class="audio-label">Ambient Companion</p>
+      <p class="audio-title" id="modalAudioTitle">Reading Companion</p>
+      <div class="progress-row">
+        <div class="progress-bar" id="modalProgressBar">
+          <div class="progress-fill" id="modalProgressFill"></div>
+        </div>
+        <span class="time-display" id="modalTimeDisplay">0:00</span>
+      </div>
+      <p class="audio-status" id="modalAudioStatus">Audio companion loading…</p>
+    </div>
+
+    <audio id="modalTutorialAudio" preload="none" loop>
+      <source id="modalTutorialAudioSrc" src="audio/tutorials/tutorial-companion.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <div class="modal-content" id="modalContent"></div>
+</div>
+
 </body>
 </html>
