@@ -2161,6 +2161,12 @@ body {
   }
 }
 
+/* Hide the floating chant toggle while tutorial modal is open
+   (prevents it from covering the modal's close button on mobile) */
+body.modal-open #se-audio-toggle {
+  display: none !important;
+}
+
 /* Return banner */
 .return-banner {
   width: 100%;
@@ -4126,6 +4132,33 @@ function setTutorialPractice(type) {
   currentTutorialPractice = type;
 }
 
+// Coordinate the three audio sources (chant, author reading, tutorial)
+// When one starts, the others pause. Mark's rule: "if a new one starts the old one stops."
+window.pauseOtherAudio = function(except) {
+  // Pause chant (floating ambient toggle) via its own click handler
+  if (except !== 'chant') {
+    const chantBtn = document.getElementById('se-audio-toggle');
+    if (chantBtn && chantBtn.getAttribute('aria-label') === 'Pause ambient audio') {
+      chantBtn.click();
+    }
+  }
+  // Stop author reading (Suno or speech synthesis)
+  if (except !== 'author') {
+    if (typeof stopAudio === 'function') {
+      try { stopAudio(); } catch (e) { /* ignore */ }
+    }
+  }
+  // Pause tutorial modal audio
+  if (except !== 'tutorial') {
+    const ta = document.getElementById('modalTutorialAudio');
+    const tb = document.getElementById('modalPlayBtn');
+    if (ta && !ta.paused) {
+      ta.pause();
+      if (tb) tb.classList.remove('playing');
+    }
+  }
+};
+
 function buildModalContent(type) {
   const about = aboutPracticeContent[type];
   if (!about) return;
@@ -4186,6 +4219,7 @@ function openTutorialModal() {
   buildModalContent(currentTutorialPractice);
   document.getElementById('tutorialModal').classList.add('open');
   document.getElementById('modalBackdrop').classList.add('open');
+  document.body.classList.add('modal-open');
   document.body.style.overflow = 'hidden';
   document.getElementById('modalContent').scrollTop = 0;
   setTimeout(() => document.getElementById('modalClose').focus(), 300);
@@ -4196,6 +4230,7 @@ function closeTutorialModal() {
   const playBtn = document.getElementById('modalPlayBtn');
   document.getElementById('tutorialModal').classList.remove('open');
   document.getElementById('modalBackdrop').classList.remove('open');
+  document.body.classList.remove('modal-open');
   document.body.style.overflow = '';
   if (audio && !audio.paused) {
     audio.pause();
@@ -4230,6 +4265,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   playBtn.addEventListener('click', () => {
     if (audio.paused) {
+      // Coordinate audios — pause chant and author reading before playing tutorial
+      if (window.pauseOtherAudio) window.pauseOtherAudio('tutorial');
       const p = audio.play();
       if (p) {
         p.then(() => {
@@ -4397,6 +4434,8 @@ function toggleAudio() {
 }
 
 function playAudio() {
+  // Coordinate audios — pause chant and tutorial before starting author reading
+  if (window.pauseOtherAudio) window.pauseOtherAudio('author');
   const weekKey = 'week' + currentWeek;
   const scripture = scriptureAudio[weekKey];
   
