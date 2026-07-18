@@ -2783,7 +2783,7 @@ body.modal-open #se-audio-toggle {
       </div>
     </div>
 
-    <div class="mood-card" data-mood="wisdom" onclick="openPractice('Historical Context & Theology','Spiritual archaeology — digging up treasures that wise souls have buried for us to find. Walk with Augustine, sit with Julian of Norwich, argue theology with Merton.', 'wisdom')">
+    <div class="mood-card" data-mood="wisdom" onclick="openPractice('Historical Context & Theology','Spiritual archaeology — digging up treasures that wise souls have buried for us to find. Walk with Augustine, sit with Julian of Norwich, and enliven your spiritual theology with Merton.', 'wisdom')">
       <div class="mood-icon octave-icon-2">📜</div>
       <div class="mood-text">
         <div class="mood-need">I need to understand...<em>credo ut intelligam</em></div>
@@ -4040,6 +4040,23 @@ function getWeekPracticeContent(weekNum, practiceType) {
   return practice.content;
 }
 
+// ── Canonical per-practice descriptions ──────────────────────────────
+// Single source of truth used by BOTH entry routes (mood cards / Option 1
+// and reliquary cards / Option 2) so the practice screen opens identically
+// no matter how the user got there. Previously the card route passed the
+// week's psalm text for every practice, which made non-Psalmody practices
+// open with a psalm excerpt.
+const practiceDescriptions = {
+  psalmody:    "The psalms are humanity\u2019s oldest therapy session \u2014 three thousand years of crying out and singing praise. Pray them slowly, in the spirit of lectio divina. Let God\u2019s word read you.",
+  wisdom:      "Spiritual archaeology \u2014 digging up treasures that wise souls have buried for us to find. Walk with Augustine, sit with Julian of Norwich, and enliven your spiritual theology with Merton.",
+  archetype:   "Which character is running the show today? Meet your inner cast \u2014 the Hero, the Orphan, the Trickster \u2014 and discover what they\u2019re protecting.",
+  imagination: "Close your eyes and step into the theater of the psyche. Meet the figures who wait there. Let the dialogue unfold \u2014 unscripted, uncensored, alive.",
+  buddhist:    "Settle into silence. Breath by breath, thought by thought, come home to the present moment. Nothing to fix, nothing to achieve \u2014 just being.",
+  music:       "Let the music do what words alone cannot. Listen, curate, create. The right song at the right moment can unlock what months of talk cannot.",
+  blake:       "Enter the visionary\u2019s world. Blake saw angels in trees and eternity in an hour. Let his fire rekindle your capacity for wonder.",
+  journal:     "The blank page is the most honest mirror. Write without editing, without censoring \u2014 let what needs to emerge find its way to the surface."
+};
+
 const practiceMenuMeta = {
   psalmody:    { icon: '📖', title: 'Psalmody & Scripture',    subtitle: 'Select a theme for psalmody',
                  detail: w => `${w.psalm} — ${w.archetype}` },
@@ -4084,8 +4101,10 @@ function openPracticeMenu(type) {
     el.onclick = function() {
       currentWeek = w.num;
       try { localStorage.setItem('soulEncounters_currentWeek', String(w.num)); } catch (e) {}
-      const scripture = scriptureAudio['week' + w.num];
-      const desc = scripture ? scripture.text.substring(0, 150) + '...' : meta.detail(w);
+      // Use the canonical description for this practice so the card route
+      // opens exactly like the mood-card route. (Formerly this passed the
+      // week's psalm text, which bled a psalm excerpt into every practice.)
+      const desc = practiceDescriptions[type] || meta.detail(w);
       openPractice(meta.title, desc, type);
     };
     list.appendChild(el);
@@ -4499,7 +4518,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const practiceConfig = {
   psalmody:    { audio: true,  breath: false }, // Psalm readings — Author's Reading only
   wisdom:      { audio: false, breath: false }, // Historical commentary — read & absorb (no audio)
-  archetype:   { audio: true,  breath: false }, // Archetype readings — listen & absorb
+  archetype:   { audio: false, breath: false }, // Archetype work — read & absorb (no archetype audio exists)
   imagination: { audio: false, breath: true  }, // Inner theater — timed meditation
   buddhist:    { audio: false, breath: true  }, // Seated practice — timed meditation
   music:       { audio: false, breath: true  }, // Active listening session — timed
@@ -5209,16 +5228,7 @@ function buildJourneyPractices(weekNum) {
   const wd = weekData[weekNum];
   practiceTypes.forEach((p, idx) => {
     const practiceContent = wd && wd.practices && wd.practices[p.key];
-    const practiceShortDesc = {
-      psalmody:    "The psalms are humanity's oldest therapy session — three thousand years of crying out and singing praise. Pray them slowly, in the spirit of lectio divina. Let God's word read you.",
-      wisdom:      "Spiritual archaeology — digging up treasures that wise souls have buried for us to find. Walk with Augustine, sit with Julian of Norwich, argue theology with Merton.",
-      archetype:   "Which character is running the show today? Meet your inner cast — the Hero, the Orphan, the Trickster — and discover what they're protecting.",
-      imagination: "Close your eyes and step into the theater of the psyche. Meet the figures who wait there. Let the dialogue unfold — unscripted, uncensored, alive.",
-      buddhist:    "Settle into silence. Breath by breath, thought by thought, come home to the present moment. Nothing to fix, nothing to achieve — just being.",
-      music:       "Let the music do what words alone cannot. Listen, curate, create. The right song at the right moment can unlock what months of talk cannot.",
-      blake:       "Enter the visionary's world. Blake saw angels in trees and eternity in an hour. Let his fire rekindle your capacity for wonder.",
-      journal:     "The blank page is the most honest mirror. Write without editing, without censoring — let what needs to emerge find its way to the surface."
-    };
+    const practiceShortDesc = practiceDescriptions;
     const title = practiceContent ? practiceContent.title : p.name;
     const desc  = practiceShortDesc[p.key] || '';
     const row = document.createElement('div');
