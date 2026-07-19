@@ -756,6 +756,52 @@ body {
   .progress-week.current .lantern-num { font-size: 0.88em; }
 }
 
+.why-themes {
+  max-width: 440px;
+  width: 100%;
+  margin: 18px auto 4px;
+  background: rgba(197,165,90,0.05);
+  border: 1px solid rgba(197,165,90,0.20);
+  border-radius: 12px;
+  padding: 0 16px;
+}
+
+.why-themes-summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 13px 0;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 0.95em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  text-align: center;
+  transition: color 0.25s ease;
+}
+.why-themes-summary::-webkit-details-marker { display: none; }
+.why-themes-summary::after {
+  content: ' \25BE';
+  color: var(--gold);
+  font-size: 0.9em;
+}
+.why-themes[open] .why-themes-summary::after { content: ' \25B4'; }
+.why-themes-summary:hover { color: var(--gold); }
+
+.why-themes-body {
+  padding: 4px 2px 16px;
+  border-top: 1px solid rgba(197,165,90,0.15);
+}
+.why-themes-body p {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.95em;
+  line-height: 1.72;
+  color: var(--parchment-dim);
+  margin: 13px 0 0;
+  text-align: left;
+}
+.why-themes-body em { color: var(--parchment); }
+
 .journey-intro-alt {
   margin-top: 14px;
   color: var(--parchment-dim);
@@ -2498,12 +2544,12 @@ body.modal-open #se-audio-toggle {
 
 .practice-row-no {
   font-family: 'Philosopher', sans-serif;
-  font-size: 0.72em;
+  font-size: 0.82em;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0.85;
+  color: var(--gold-light);
+  opacity: 1;
 }
 
 .practice-row-name {
@@ -3044,6 +3090,21 @@ body.modal-open #se-audio-toggle {
 
   <!-- Journey Intro -->
   <p class="journey-intro">Begin with Week 1 and notice how the themes flow from week to week. Each week holds an Octave of eight practices — designed to flow from Practice 1 through 8. Complete all eight before moving on to the next week's journey.</p>
+
+  <details class="why-themes">
+    <summary class="why-themes-summary">Why the Weekly Themes?</summary>
+    <div class="why-themes-body">
+      <p>You may be wondering why a book of contemplative practice hands you an archetype along with your psalm. Why <em>The Orphan</em> in week three, and not simply another prayer?</p>
+
+      <p>Because you are never praying in general. You are praying from somewhere &mdash; from this body, this season, this particular trouble or gladness. Carl Jung insisted that an archetype is not a label to be stuck on a person. It is, in his words, <em>&ldquo;empty and purely formal&hellip; a possibility of representation.&rdquo;</em> He compared it to the axial system of a crystal, which shapes how the crystal will form but has no substance of its own until the actual solution begins to gather. The pattern is real. The content is yours. An archetype becomes something only <em>&ldquo;when it has become conscious and is therefore filled out with the material of conscious experience.&rdquo;</em></p>
+
+      <p>So the weekly theme is not a diagnosis. It is a name offered for something your life may already be doing &mdash; and a name, once you have it, makes a thing easier to bring to God.</p>
+
+      <p>The wisdom traditions have always known this. The psalmist is never nowhere; he is in the pit, in the wilderness, among enemies, beside still water. Ignatius asked us to compose the place before we pray in it. The desert elders sent the seeker not to an idea but to a cell &mdash; a room, a floor, four walls &mdash; and promised the room itself would do the teaching. Buddhist practice begins where you are sitting and with the breath you actually have. None of them addressed a soul hovering somewhere above its circumstances, because no such soul has ever been available to address.</p>
+
+      <p>Thirteen weeks, thirteen contexts &mdash; longing, innocence, abandonment, struggle, love, hiddenness, death and rebirth, and on toward wisdom. Take them in order and they trace the shape of a life. Or wait until one of them describes the week you are actually having, and start there.</p>
+    </div>
+  </details>
 
   <p class="journey-intro journey-intro-alt"><em>&mdash; or &mdash;</em><br>If you'd prefer a less formal, more spontaneous practice, simply touch one of the candles below to open that week's eight shared themes and choose from among them.</p>
 
