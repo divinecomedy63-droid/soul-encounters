@@ -678,24 +678,26 @@ body {
   gap: 2px;
   cursor: pointer;
   transition: all 0.3s ease;
-  padding: 4px 3px;
-  border-radius: 6px;
-  background: transparent;
-  border: 1px solid transparent;
+  padding: 7px 6px;
+  border-radius: 10px;
+  background: rgba(197,165,90,0.05);
+  border: 1px solid rgba(197,165,90,0.18);
+  min-width: 46px;
 }
 
 .progress-week .lantern-flame {
   font-size: 2.2em;
   line-height: 1;
-  opacity: 0.22;
+  opacity: 0.42;
   transition: all 0.3s ease;
-  filter: grayscale(1);
+  filter: grayscale(0.55);
 }
 
 .progress-week .lantern-num {
   font-family: 'Philosopher', sans-serif;
-  font-size: 0.58em;
-  color: var(--text-muted);
+  font-size: 0.78em;
+  font-weight: 700;
+  color: var(--gold-dim);
   letter-spacing: 0.02em;
   transition: all 0.3s ease;
 }
@@ -739,13 +741,33 @@ body {
 @media (max-width: 480px) {
   .journey-progress {
     display: grid;
-    grid-template-columns: repeat(13, 1fr);
-    gap: 2px;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px 6px;
+    width: 100%;
     max-width: 100%;
+    align-self: stretch;
+    padding: 0 4px;
+    box-sizing: border-box;
   }
-  .progress-week .lantern-flame { font-size: 1.3em !important; }
-  .progress-week.current .lantern-flame { font-size: 1.6em !important; }
-  .progress-week { padding: 2px 0; }
+  .progress-week .lantern-flame { font-size: 1.9em !important; }
+  .progress-week.current .lantern-flame { font-size: 2.2em !important; }
+  .progress-week { padding: 6px 2px; min-width: 0; }
+  .progress-week .lantern-num { font-size: 0.72em; }
+}
+
+.journey-intro-alt {
+  margin-top: 14px;
+  color: var(--parchment-dim);
+  font-style: normal;
+}
+.journey-intro-alt em {
+  display: inline-block;
+  margin-bottom: 6px;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 0.85em;
+  font-style: normal;
 }
 
 .progress-label {
@@ -2993,6 +3015,8 @@ body.modal-open #se-audio-toggle {
 
   <!-- Journey Intro -->
   <p class="journey-intro">Begin with Week 1 and notice how the themes flow from week to week. Each week holds an Octave of eight practices — designed to flow from Practice 1 through 8. Complete all eight before moving on to the next week's journey.</p>
+
+  <p class="journey-intro journey-intro-alt"><em>&mdash; or &mdash;</em><br>If you'd prefer a less formal, more spontaneous practice, simply touch one of the candles below to open that week's eight shared themes and choose from among them.</p>
 
   <!-- Progress Lanterns -->
   <div class="journey-progress">
