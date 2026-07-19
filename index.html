@@ -741,18 +741,19 @@ body {
 @media (max-width: 480px) {
   .journey-progress {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 8px 6px;
+    grid-template-columns: repeat(13, 1fr);
+    gap: 3px;
     width: 100%;
     max-width: 100%;
     align-self: stretch;
-    padding: 0 4px;
+    padding: 0 2px;
     box-sizing: border-box;
   }
-  .progress-week .lantern-flame { font-size: 1.9em !important; }
-  .progress-week.current .lantern-flame { font-size: 2.2em !important; }
-  .progress-week { padding: 6px 2px; min-width: 0; }
-  .progress-week .lantern-num { font-size: 0.88em; }
+  .progress-week .lantern-flame { font-size: 1.45em !important; }
+  .progress-week.current .lantern-flame { font-size: 1.75em !important; }
+  .progress-week { padding: 5px 1px; min-width: 0; }
+  .progress-week .lantern-num { font-size: 0.8em; }
+  .progress-week.current .lantern-num { font-size: 0.88em; }
 }
 
 .journey-intro-alt {
@@ -761,17 +762,27 @@ body {
   font-style: normal;
 }
 .journey-intro-alt em {
-  display: inline-block;
-  margin-bottom: 6px;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px;
   color: var(--gold);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.28em;
+  text-indent: 0.28em;
   font-family: 'Philosopher', sans-serif;
-  font-size: 0.85em;
+  font-size: 1.15em;
+  font-weight: 700;
   font-style: normal;
+  text-transform: uppercase;
 }
 
 .progress-label {
   display: none;
+  /* Keep this out of the candle grid entirely; as a grid child it was creating a
+     14th cell and forcing the 13 candles to wrap. */
+  position: absolute;
+  visibility: hidden;
+  width: 0;
+  height: 0;
 }
 
 /* Octave Ring (8 practices in a circle) */
@@ -5248,6 +5259,13 @@ function switchWeek(n) {
 
   // Fix Bug 2: Rebuild practices from the correct week's data
   buildJourneyPractices(n);
+
+  // The week header + eight practices sit below the fold on phones, so tapping a
+  // candle used to look like nothing happened. Bring the newly chosen week into view.
+  const header = document.querySelector('.week-header');
+  if (header && typeof header.scrollIntoView === 'function') {
+    header.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 function buildJourneyPractices(weekNum) {
