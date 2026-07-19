@@ -3030,6 +3030,11 @@ body.modal-open #se-audio-toggle {
 // ═══════════════════════════════════════
 let currentScreen = 'homeScreen';
 let previousScreen = 'homeScreen';
+// Explicit back-target for the practice screen. Set when a practice is opened
+// so that switching practice->practice (which used to leave previousScreen
+// pointing at 'practiceScreen') still returns the user to the screen they
+// actually came from, rather than dumping them at home.
+let practiceBackTarget = 'homeScreen';
 let timerInterval = null;
 let timerSeconds = 600;
 let timerRunning = false;
@@ -3177,6 +3182,13 @@ window.stopCardAudio = window.stopCardAudio || function () {};
     stopCardAudio();
   }
 
+  // Record where the practice screen was entered FROM. Only update when we are
+  // actually arriving at the practice screen from somewhere else, so that
+  // practice->practice navigation preserves the original entry point.
+  if (id === 'practiceScreen' && currentScreen !== 'practiceScreen') {
+    practiceBackTarget = currentScreen;
+  }
+
   previousScreen = currentScreen;
   document.getElementById(currentScreen).classList.remove('active');
   document.getElementById(id).classList.add('active');
@@ -3185,7 +3197,12 @@ window.stopCardAudio = window.stopCardAudio || function () {};
 }
 
 function goBackFromPractice() {
-  showScreen(previousScreen === 'practiceScreen' ? 'homeScreen' : previousScreen);
+  // Use the explicit entry point recorded when this practice was opened.
+  // Falls back to home if anything unexpected happened.
+  const target = (practiceBackTarget && practiceBackTarget !== 'practiceScreen')
+    ? practiceBackTarget
+    : 'homeScreen';
+  showScreen(target);
 }
 
 // ═══════════════════════════════════════
