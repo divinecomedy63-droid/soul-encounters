@@ -802,6 +802,37 @@ body {
 }
 .why-themes-body em { color: var(--parchment); }
 
+.theme-list {
+  margin: 16px 0 4px;
+  padding: 13px 15px;
+  background: rgba(197,165,90,0.06);
+  border: 1px solid rgba(197,165,90,0.18);
+  border-radius: 10px;
+}
+.theme-list-head {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 9px;
+  text-align: center;
+}
+.theme-list ol {
+  margin: 0;
+  padding-left: 1.35em;
+}
+.theme-list li {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.88em;
+  line-height: 1.55;
+  color: var(--parchment-dim);
+  margin-bottom: 6px;
+}
+.theme-list li::marker { color: var(--gold-dim); font-size: 0.85em; }
+.theme-list li b { color: var(--gold-light); font-weight: 700; }
+
 .journey-intro-alt {
   margin-top: 14px;
   color: var(--parchment-dim);
@@ -3094,15 +3125,34 @@ body.modal-open #se-audio-toggle {
   <details class="why-themes">
     <summary class="why-themes-summary">Why the Weekly Themes?</summary>
     <div class="why-themes-body">
-      <p>You may be wondering why a book of contemplative practice hands you an archetype along with your psalm. Why <em>The Orphan</em> in week three, and not simply another prayer?</p>
+      <p>Why does a book of contemplative practice hand you an archetype along with your psalm?</p>
 
-      <p>Because you are never praying in general. You are praying from somewhere &mdash; from this body, this season, this particular trouble or gladness. Carl Jung insisted that an archetype is not a label to be stuck on a person. It is, in his words, <em>&ldquo;empty and purely formal&hellip; a possibility of representation.&rdquo;</em> He compared it to the axial system of a crystal, which shapes how the crystal will form but has no substance of its own until the actual solution begins to gather. The pattern is real. The content is yours. An archetype becomes something only <em>&ldquo;when it has become conscious and is therefore filled out with the material of conscious experience.&rdquo;</em></p>
+      <p>Because you are never praying in general. Psychological and social science have thoroughly confirmed what the great wisdom and faith traditions long knew: we embody the causes and conditions of our environments and relationships, and we do so in recognizable, thematic ways. Jung called these patterns <em>archetypes</em>; attachment theory, family systems, trauma studies, and the social sciences each describe the same dynamic in their own vocabulary. Practicing your spiritual exercises within a psychological context &mdash; a theme &mdash; allows your life-situation, your felt sense of embodiment, and your social environment to be taken into account as a key for deepening the practice.</p>
 
-      <p>So the weekly theme is not a diagnosis. It is a name offered for something your life may already be doing &mdash; and a name, once you have it, makes a thing easier to bring to God.</p>
+      <p>Jung was careful about what an archetype is and is not. They are, he wrote, <em>&ldquo;organs of the pre-rational psyche&hellip; eternally inherited forms and ideas which have at first no specific content. Their specific content only appears in the course of the individual&rsquo;s life, when personal experience is taken up in precisely these forms.&rdquo;</em> The pattern is real; the content is yours. And he located the strongest of them not in myth but in ordinary life &mdash; it is <em>&ldquo;the most ordinary, everyday events, immediate realities like husband, wife, father, mother, child&hellip; which create the mightiest archetypes of all.&rdquo;</em></p>
 
-      <p>The wisdom traditions have always known this. The psalmist is never nowhere; he is in the pit, in the wilderness, among enemies, beside still water. Ignatius asked us to compose the place before we pray in it. The desert elders sent the seeker not to an idea but to a cell &mdash; a room, a floor, four walls &mdash; and promised the room itself would do the teaching. Buddhist practice begins where you are sitting and with the breath you actually have. None of them addressed a soul hovering somewhere above its circumstances, because no such soul has ever been available to address.</p>
+      <p>So a theme is not a diagnosis. It is a name offered for something your life may already be doing &mdash; and a name, once you have it, makes a thing easier to bring to God.</p>
 
-      <p>Thirteen weeks, thirteen contexts &mdash; longing, innocence, abandonment, struggle, love, hiddenness, death and rebirth, and on toward wisdom. Take them in order and they trace the shape of a life. Or wait until one of them describes the week you are actually having, and start there.</p>
+      <div class="theme-list">
+        <div class="theme-list-head">The Thirteen</div>
+        <ol>
+          <li><b>The Seeker</b> &mdash; holy restlessness; the longing that starts the journey</li>
+          <li><b>The Innocent</b> &mdash; trust before disillusionment; learning to be held</li>
+          <li><b>The Orphan</b> &mdash; abandonment, and the cry that becomes a door</li>
+          <li><b>The Warrior</b> &mdash; what you are willing to stand and fight for</li>
+          <li><b>The Lover</b> &mdash; desire, beauty, and the risk of attachment</li>
+          <li><b>The Shapeshifter</b> &mdash; the self that shifts by circumstance: the many faces we wear, and the question of which is true</li>
+          <li><b>Death &amp; Rebirth</b> &mdash; the necessary ending; the dark night</li>
+          <li><b>The Magician</b> &mdash; wonder at a world charged with more than matter</li>
+          <li><b>The Ruler</b> &mdash; authority, responsibility, and the ordering of a life</li>
+          <li><b>The Healer</b> &mdash; the wounded who tend others; care that costs something</li>
+          <li><b>The Creator</b> &mdash; making, and the image of God who makes</li>
+          <li><b>The Hero</b> &mdash; the return, and gratitude for deliverance</li>
+          <li><b>The Sage</b> &mdash; numbered days, and the wisdom that comes of facing them</li>
+        </ol>
+      </div>
+
+      <p>Take them in order and they trace the shape of a life. Or wait until one of them names the week you are actually having, and start there.</p>
     </div>
   </details>
 
@@ -3237,11 +3287,11 @@ const scriptureAudio = {
     title: 'Psalm 72 — The Ruler',
     text: `Give the king your justice, O God, and your righteousness to a king's son. May he judge your people with righteousness, and your poor with justice. May the mountains yield prosperity for the people, and the hills, in righteousness. May he defend the cause of the poor of the people, give deliverance to the needy, and crush the oppressor. May he live while the sun endures, and as long as the moon, throughout all generations. May he be like rain that falls on the mown grass, like showers that water the earth. In his days may righteousness flourish and peace abound, until the moon is no more. For he delivers the needy when they call, the poor and those who have no helper.`
   },
-  // Week 10: The Caregiver — Psalm 23
+  // Week 10: The Healer — Psalm 23
   week10: {
     source: 'suno',
     sunoUrl: 'week10-psalm-23-caregiver.mp3',
-    title: 'Psalm 23 — The Caregiver',
+    title: 'Psalm 23 — The Healer',
     text: `The LORD is my shepherd, I shall not want. He makes me lie down in green pastures; he leads me beside still waters; he restores my soul. He leads me in right paths for his name's sake. Even though I walk through the darkest valley, I fear no evil; for you are with me; your rod and your staff — they comfort me. You prepare a table before me in the presence of my enemies; you anoint my head with oil; my cup overflows. Surely goodness and mercy shall follow me all the days of my life, and I shall dwell in the house of the LORD my whole life long.`
   },
   // Week 11: The Creator — Psalm 19
@@ -3338,7 +3388,7 @@ const weekThemes = [
   { num: 7,  archetype: 'Death & Rebirth',   psalm: 'Psalm 88',  wisdom: 'John of the Cross' },
   { num: 8,  archetype: 'The Magician',      psalm: 'Psalm 104', wisdom: 'Hildegard of Bingen' },
   { num: 9,  archetype: 'The Ruler',         psalm: 'Psalm 72',  wisdom: 'Augustine & Aquinas' },
-  { num: 10, archetype: 'The Caregiver',     psalm: 'Psalm 23',  wisdom: 'Henri Nouwen' },
+  { num: 10, archetype: 'The Healer',        psalm: 'Psalm 23',  wisdom: 'Henri Nouwen' },
   { num: 11, archetype: 'The Creator',       psalm: 'Psalm 19',  wisdom: 'Bede Griffiths' },
   { num: 12, archetype: 'The Hero',          psalm: 'Psalm 18',  wisdom: 'Thomas Merton' },
   { num: 13, archetype: 'The Sage',          psalm: 'Psalm 90',  wisdom: 'Evagrius Ponticus' }
