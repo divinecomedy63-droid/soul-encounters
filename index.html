@@ -1010,18 +1010,27 @@ body {
   margin-bottom: 9px;
   text-align: center;
 }
-.theme-list ol {
+.theme-list-items {
   margin: 0;
-  padding-left: 1.35em;
+  padding: 0;
+  list-style: none;
 }
 .theme-list li {
   font-family: 'Lora', Georgia, serif;
-  font-size: 0.88em;
-  line-height: 1.55;
+  font-size: 0.9em;
+  line-height: 1.58;
   color: var(--parchment-dim);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  padding-left: 0;
 }
-.theme-list li::marker { color: var(--gold-dim); font-size: 0.85em; }
+.theme-week {
+  font-family: 'Philosopher', sans-serif;
+  font-weight: 700;
+  font-size: 0.95em;
+  color: #f0e2b8;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
 .theme-list li b { color: var(--gold-light); font-weight: 700; }
 
 .journey-intro-alt {
@@ -3348,21 +3357,21 @@ body.modal-open #se-audio-toggle {
 
       <div class="theme-list">
         <div class="theme-list-head">The Thirteen</div>
-        <ol>
-          <li><b>The Seeker</b> &mdash; holy restlessness; the longing that starts the journey</li>
-          <li><b>The Innocent</b> &mdash; trust before disillusionment; learning to be held</li>
-          <li><b>The Orphan</b> &mdash; abandonment, and the cry that becomes a door</li>
-          <li><b>The Warrior</b> &mdash; what you are willing to stand and fight for</li>
-          <li><b>The Lover</b> &mdash; desire, beauty, and the risk of attachment</li>
-          <li><b>The Shapeshifter</b> &mdash; the self that shifts by circumstance: the many faces we wear, and the question of which is true</li>
-          <li><b>Death &amp; Rebirth</b> &mdash; the necessary ending; the dark night</li>
-          <li><b>The Magician</b> &mdash; wonder at a world charged with more than matter</li>
-          <li><b>The Ruler</b> &mdash; authority, responsibility, and the ordering of a life</li>
-          <li><b>The Healer</b> &mdash; the wounded who tend others; care that costs something</li>
-          <li><b>The Creator</b> &mdash; making, and the image of God who makes</li>
-          <li><b>The Hero</b> &mdash; the return, and gratitude for deliverance</li>
-          <li><b>The Sage</b> &mdash; numbered days, and the wisdom that comes of facing them</li>
-        </ol>
+        <ul class="theme-list-items">
+          <li><span class="theme-week">Week 1:</span> <b>The Seeker</b> &mdash; holy restlessness; the longing that starts the journey</li>
+          <li><span class="theme-week">Week 2:</span> <b>The Innocent</b> &mdash; trust before disillusionment; learning to be held</li>
+          <li><span class="theme-week">Week 3:</span> <b>The Orphan</b> &mdash; abandonment, and the cry that becomes a door</li>
+          <li><span class="theme-week">Week 4:</span> <b>The Warrior</b> &mdash; what you are willing to stand and fight for</li>
+          <li><span class="theme-week">Week 5:</span> <b>The Lover</b> &mdash; desire, beauty, and the risk of attachment</li>
+          <li><span class="theme-week">Week 6:</span> <b>The Shapeshifter</b> &mdash; the self that shifts by circumstance: the many faces we wear, and the question of which is true</li>
+          <li><span class="theme-week">Week 7:</span> <b>Death &amp; Rebirth</b> &mdash; the necessary ending; the dark night</li>
+          <li><span class="theme-week">Week 8:</span> <b>The Magician</b> &mdash; wonder at a world charged with more than matter</li>
+          <li><span class="theme-week">Week 9:</span> <b>The Ruler</b> &mdash; authority, responsibility, and the ordering of a life</li>
+          <li><span class="theme-week">Week 10:</span> <b>The Healer</b> &mdash; the wounded who tend others; care that costs something</li>
+          <li><span class="theme-week">Week 11:</span> <b>The Creator</b> &mdash; making, and the image of God who makes</li>
+          <li><span class="theme-week">Week 12:</span> <b>The Hero</b> &mdash; the return, and gratitude for deliverance</li>
+          <li><span class="theme-week">Week 13:</span> <b>The Sage</b> &mdash; numbered days, and the wisdom that comes of facing them</li>
+        </ul>
       </div>
 
       <p>You can either take them in order as they appear in the App, or select a theme yourself &mdash; a candle with that theme &mdash; which describes your own context and needs now.</p>
@@ -4518,6 +4527,15 @@ function openPracticeIntro(type) {
   showScreen('practiceIntroScreen');
   const sc = document.getElementById('practiceIntroScreen');
   if (sc) sc.scrollTop = 0;
+
+  // Ambient chant. The card used to call openPracticeMenu() directly, which is
+  // where the chant is started; now the card opens this introduction first, so
+  // start it here too or the atmosphere arrives a screen late.
+  if (type === 'psalmody') {
+    initCardAudio('Lux%20Aeterna%20in%20Aeternum.mp3', 'Chant');
+  } else if (type === 'buddhist') {
+    initCardAudio('Mountain%20Breath%20Mantra.mp3', 'Chant');
+  }
 }
 
 // Both buttons lead into the practice; the second simply records the
