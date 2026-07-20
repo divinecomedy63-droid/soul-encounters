@@ -1633,19 +1633,27 @@ body {
   font-style: italic;
   color: var(--parchment);
   margin: 16px 0;
-  padding: 12px 10px;
-  font-size: 1.28em;
+  padding: 12px 6px;
+  font-size: 1.18em;
   line-height: 1.5;
   background: rgba(197,165,90,0.07);
   border-top: 1px solid rgba(197,165,90,0.22);
   border-bottom: 1px solid rgba(197,165,90,0.22);
 }
+/* Keep the three seasons on a single unbroken line. The sequence reads as one
+   movement, so a mid-phrase wrap breaks the sense of it. */
+.ps-season .ps-seasons-row {
+  display: block;
+  white-space: nowrap;
+  font-size: 0.92em;
+  letter-spacing: -0.005em;
+  margin-top: 4px;
+}
 .ps-season b {
   font-style: normal;
   color: #f0e2b8;
   font-weight: 700;
-  font-size: 1.06em;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
 .ps-steps { list-style: none; counter-reset: psstep; margin: 6px 0 0; padding: 0; }
 .ps-steps li {
@@ -3638,7 +3646,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br><b>Orientation</b> · Disorientation · New Orientation</div>Psalm 42 opens the journey in <em>orientation</em> — but an orientation shot through with longing. The deer panting for water is the soul that knows what it thirsts for, even in the ache of distance. This first week begins where the whole journey begins: with holy desire.</div>
+                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br><span class="ps-seasons-row"><b>Orientation</b> · Disorientation · New Orientation</span></div>Psalm 42 opens the journey in <em>orientation</em> — but an orientation shot through with longing. The deer panting for water is the soul that knows what it thirsts for, even in the ache of distance. This first week begins where the whole journey begins: with holy desire.</div>
 
 <div class="ps-slot"><div class="ps-label">Why It Matters</div>Before anything else, the spiritual life begins as thirst — a longing that ordinary things cannot satisfy. Psalm 42 names that thirst and blesses it, teaching us that our restlessness is not a flaw to fix but a compass pointing home.</div>
 
@@ -3694,7 +3702,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br><b>Orientation</b> · Disorientation · New Orientation</div>Psalm 131 is a psalm of <em>orientation</em> — the settled trust of a soul at rest. Like a weaned child no longer crying to be fed, it has stopped grasping at things too great and marvelous, and simply rests against the mother. This week, let the practice be about quieting: not achieving, not striving, but being held.</div>
+                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br><span class="ps-seasons-row"><b>Orientation</b> · Disorientation · New Orientation</span></div>Psalm 131 is a psalm of <em>orientation</em> — the settled trust of a soul at rest. Like a weaned child no longer crying to be fed, it has stopped grasping at things too great and marvelous, and simply rests against the mother. This week, let the practice be about quieting: not achieving, not striving, but being held.</div>
 
 <div class="ps-slot"><div class="ps-label">Why It Matters</div>Not every psalm is a storm. Some, like this one, teach the soul how to be still — a discipline as demanding as any lament. In a restless age, learning to quiet the striving mind and rest in trust is its own kind of healing.</div>
 
@@ -3750,7 +3758,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br>Orientation · <b>Disorientation</b> · New Orientation</div>Psalm 22 is the great psalm of <em>disorientation</em> — the honest cry from the pit. "My God, my God, why have you forsaken me?" These are the words Jesus reached for from the cross. This week the practice descends: not into despair, but into permission. The Psalms insist that even this — even the sense of being abandoned — belongs in prayer, spoken plainly to God.</div>
+                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br><span class="ps-seasons-row">Orientation · <b>Disorientation</b> · New Orientation</span></div>Psalm 22 is the great psalm of <em>disorientation</em> — the honest cry from the pit. "My God, my God, why have you forsaken me?" These are the words Jesus reached for from the cross. This week the practice descends: not into despair, but into permission. The Psalms insist that even this — even the sense of being abandoned — belongs in prayer, spoken plainly to God.</div>
 
 <div class="ps-slot"><div class="ps-label">Why It Matters</div>Much of modern spirituality quietly communicates that your darkness is not welcome. Psalm 22 blows that door open. It gives voice to forsakenness without requiring you to resolve it, tidy it, or pretend. For anyone in the middle of grief or trouble, this is not a detour from faith — it is faith, speaking honestly.</div>
 
@@ -3806,7 +3814,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br>Orientation · Disorientation · <b>New Orientation</b></div>Psalm 144 is a psalm of <em>new orientation</em> — trust regained on the far side of struggle. The one who cries “blessed be the LORD, my rock” has been through the battle and found God to be fortress and deliverer. This is not naive confidence but hard-won ground.</div>
+                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br><span class="ps-seasons-row">Orientation · Disorientation · <b>New Orientation</b></span></div>Psalm 144 is a psalm of <em>new orientation</em> — trust regained on the far side of struggle. The one who cries “blessed be the LORD, my rock” has been through the battle and found God to be fortress and deliverer. This is not naive confidence but hard-won ground.</div>
 
 <div class="ps-slot"><div class="ps-label">Why It Matters</div>Some seasons call for strength — not to dominate, but to stand. Psalm 144 gives the language of the spiritual warrior: not fighting for gain, but taking refuge in the God who is rock and stronghold. It steadies the soul that has had to fight to keep going.</div>
 
@@ -3862,7 +3870,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br><b>Orientation</b> · Disorientation · New Orientation</div>Psalm 45 is a psalm of <em>orientation</em> in a warmer key — a wedding song, a love poem, the heart overflowing. Where much of the Psalter wrestles, this one simply delights. The mystics read it as the soul’s love song to God, love that is its own reward.</div>
+                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br><span class="ps-seasons-row"><b>Orientation</b> · Disorientation · New Orientation</span></div>Psalm 45 is a psalm of <em>orientation</em> in a warmer key — a wedding song, a love poem, the heart overflowing. Where much of the Psalter wrestles, this one simply delights. The mystics read it as the soul’s love song to God, love that is its own reward.</div>
 
 <div class="ps-slot"><div class="ps-label">Why It Matters</div>The spiritual life is not only struggle and lament — it is also delight, beauty, and love. Psalm 45 gives permission to let the heart overflow, to address God as the Beloved. Sometimes the truest prayer is simply admiration.</div>
 
@@ -3918,7 +3926,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br>Orientation · <b>Disorientation</b> · New Orientation</div>Psalm 139 begins the turn toward <em>disorientation</em> — not through catastrophe, but through exposure. “You have searched me and known me.” To be fully known is comfort and terror at once. This week the practice turns inward, to the God from whom nothing can be hidden.</div>
+                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br><span class="ps-seasons-row">Orientation · <b>Disorientation</b> · New Orientation</span></div>Psalm 139 begins the turn toward <em>disorientation</em> — not through catastrophe, but through exposure. “You have searched me and known me.” To be fully known is comfort and terror at once. This week the practice turns inward, to the God from whom nothing can be hidden.</div>
 
 <div class="ps-slot"><div class="ps-label">Why It Matters</div>To be truly known — every thought, every hidden place — is one of the most unsettling and consoling truths of the spiritual life. Psalm 139 refuses the illusion that we can hide from God, or from ourselves. It invites the honesty that real transformation requires.</div>
 
@@ -3974,7 +3982,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br>Orientation · <b>Disorientation</b> · New Orientation</div>Psalm 88 is the deepest point of <em>disorientation</em> in the whole Psalter — the one psalm that ends in darkness, with no resolution, no upturn. This week the journey reaches its midnight. The practice does not rush past this. It stays, because sometimes faith means crying out from the pit and trusting that the cry itself is heard.</div>
+                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br><span class="ps-seasons-row">Orientation · <b>Disorientation</b> · New Orientation</span></div>Psalm 88 is the deepest point of <em>disorientation</em> in the whole Psalter — the one psalm that ends in darkness, with no resolution, no upturn. This week the journey reaches its midnight. The practice does not rush past this. It stays, because sometimes faith means crying out from the pit and trusting that the cry itself is heard.</div>
 
 <div class="ps-slot"><div class="ps-label">Why It Matters</div>Psalm 88 is the psalm for the night that does not end on cue. It refuses the false comfort of a tidy resolution — and in doing so, it becomes a companion for anyone in genuine darkness. Its very presence in Scripture is a mercy: even this belongs to prayer.</div>
 
@@ -4030,7 +4038,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br>Orientation · Disorientation · <b>New Orientation</b></div>After the midnight of Psalm 88, Psalm 104 breaks into <em>new orientation</em> — the great creation hymn, light and life pouring back. This is not a return to naive beginnings but praise on the far side of darkness: the soul that has been to the pit and can bless the LORD again.</div>
+                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br><span class="ps-seasons-row">Orientation · Disorientation · <b>New Orientation</b></span></div>After the midnight of Psalm 88, Psalm 104 breaks into <em>new orientation</em> — the great creation hymn, light and life pouring back. This is not a return to naive beginnings but praise on the far side of darkness: the soul that has been to the pit and can bless the LORD again.</div>
 
 <div class="ps-slot"><div class="ps-label">Why It Matters</div>Praise after darkness is different from praise before it. Psalm 104 sings the goodness of creation — light, water, wind, and living things — with the depth of one who has learned how fragile and how gifted it all is. It is joy that has passed through grief.</div>
 
@@ -4086,7 +4094,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br>Orientation · Disorientation · <b>New Orientation</b></div>Psalm 72 is <em>new orientation</em> turned outward — a prayer for justice, for a world set right. Having found rest, the soul now longs for that rest to reach the poor, the needy, the whole ordered world. Trust regained becomes a hunger for righteousness.</div>
+                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br><span class="ps-seasons-row">Orientation · Disorientation · <b>New Orientation</b></span></div>Psalm 72 is <em>new orientation</em> turned outward — a prayer for justice, for a world set right. Having found rest, the soul now longs for that rest to reach the poor, the needy, the whole ordered world. Trust regained becomes a hunger for righteousness.</div>
 
 <div class="ps-slot"><div class="ps-label">Why It Matters</div>The healed soul does not stay turned inward. Psalm 72 prays for a world governed by justice and mercy — where the poor are defended and the needy delivered. It reminds us that contemplation and compassion belong together.</div>
 
@@ -4142,7 +4150,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br>Orientation · Disorientation · <b>New Orientation</b></div>Psalm 23 is perhaps the purest psalm of <em>new orientation</em> — trust on the far side of the valley. “Even though I walk through the darkest valley, I fear no evil.” This is not trust that avoids the valley, but trust forged by having walked through it with God.</div>
+                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br><span class="ps-seasons-row">Orientation · Disorientation · <b>New Orientation</b></span></div>Psalm 23 is perhaps the purest psalm of <em>new orientation</em> — trust on the far side of the valley. “Even though I walk through the darkest valley, I fear no evil.” This is not trust that avoids the valley, but trust forged by having walked through it with God.</div>
 
 <div class="ps-slot"><div class="ps-label">Why It Matters</div>The most beloved of all psalms is not naive. Its comfort is earned: it speaks of the darkest valley, the presence of enemies, the shadow of death — and still says “I shall not want.” This is the settled peace that lies on the far side of grief.</div>
 
@@ -4198,7 +4206,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br>Orientation · Disorientation · <b>New Orientation</b></div>Psalm 19 is <em>new orientation</em> as wonder — the heavens themselves declaring glory. Creation speaks without words; the law of the LORD revives the soul. This week the practice lifts its eyes: the whole world becomes a text through which God is read.</div>
+                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br><span class="ps-seasons-row">Orientation · Disorientation · <b>New Orientation</b></span></div>Psalm 19 is <em>new orientation</em> as wonder — the heavens themselves declaring glory. Creation speaks without words; the law of the LORD revives the soul. This week the practice lifts its eyes: the whole world becomes a text through which God is read.</div>
 
 <div class="ps-slot"><div class="ps-label">Why It Matters</div>Psalm 19 sees two great revelations — the silent testimony of the skies, and the reviving clarity of God’s word. Together they teach that the sacred is not hidden away but pours forth everywhere, day to day, night to night, for those with eyes to see.</div>
 
@@ -4254,7 +4262,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br>Orientation · Disorientation · <b>New Orientation</b></div>Psalm 18 is <em>new orientation</em> as thanksgiving — the great song of deliverance. “He drew me out of mighty waters.” The one who was in the cords of death now sings of rescue. This week, near the journey’s end, the practice becomes gratitude for having been carried through.</div>
+                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br><span class="ps-seasons-row">Orientation · Disorientation · <b>New Orientation</b></span></div>Psalm 18 is <em>new orientation</em> as thanksgiving — the great song of deliverance. “He drew me out of mighty waters.” The one who was in the cords of death now sings of rescue. This week, near the journey’s end, the practice becomes gratitude for having been carried through.</div>
 
 <div class="ps-slot"><div class="ps-label">Why It Matters</div>Psalm 18 is what the soul sings after it has been delivered. It looks back over the whole ordeal — the cords of death, the mighty waters — and names the God who reached down and drew it out. It is the psalm of the survivor’s gratitude.</div>
 
@@ -4310,7 +4318,7 @@ const weekData = {
                     psalmody: {
                         icon: "📖",
                         title: "Psalmody & Scripture",
-                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br>Orientation · Disorientation · <b>New Orientation</b></div>Psalm 90 closes the journey in <em>new orientation</em> as wisdom — Moses’ prayer, the one psalm attributed to him, praying that we might “number our days” and gain a heart of wisdom. Having passed through orientation, disorientation, and return, the soul arrives at the mature acceptance of its own mortality — and finds, there, not despair but wisdom.</div>
+                        content: `<div class="ps-slot"><div class="ps-label">Orient</div>Psalmody is the ancient practice of praying the Psalms from the heart — not just reading them for information, but praying them, so that voice, breath, and body all take part.<div class="ps-season">The Psalms move in three seasons:<br><span class="ps-seasons-row">Orientation · Disorientation · <b>New Orientation</b></span></div>Psalm 90 closes the journey in <em>new orientation</em> as wisdom — Moses’ prayer, the one psalm attributed to him, praying that we might “number our days” and gain a heart of wisdom. Having passed through orientation, disorientation, and return, the soul arrives at the mature acceptance of its own mortality — and finds, there, not despair but wisdom.</div>
 
 <div class="ps-slot"><div class="ps-label">Why It Matters</div>At the journey’s end stands the deepest wisdom: to number our days. Psalm 90 does not flinch from mortality — “they are soon gone, and we fly away” — yet it asks that this awareness produce not fear but a wise and grateful heart. To know we are finite is to learn, at last, how to live.</div>
 
@@ -4569,8 +4577,11 @@ document.addEventListener('DOMContentLoaded', function () {
 // available (and pausable) for the whole guided journey, not only when a
 // practice card happens to be tapped.
 function enterReliquary() {
-  showScreen('journeyScreen');
+  // Start the chant FIRST, while we are still inside the click handler, so the
+  // browser counts it as user-initiated. Calling showScreen() first can break
+  // the gesture chain and get the audio blocked.
   initCardAudio('Lux%20Aeterna%20in%20Aeternum.mp3', 'Chant');
+  showScreen('journeyScreen');
 }
 
 // Card entry point: show the introduction unless the user has opted out.
@@ -5849,21 +5860,33 @@ switchWeek(currentWeek);
     stopCardAudio();
     label = label || 'Chant';
     _audio         = new Audio(src);
-_audio.loop    = true;
+    _audio.loop    = true;
     _audio.preload = 'auto';
     _audio.setAttribute('disableRemotePlayback', '');
-    const p = _audio.play();
-    if (p !== undefined) {
-      p.then(() => _fadeIn(_audio))
-       .catch(() => {
-         if (_toggleBtn) {
-           _toggleBtn.innerHTML = ICON_PLAY + `<span>${label}</span>`;
-           _toggleBtn.setAttribute('aria-label', 'Play ambient audio');
-         }
-       });
-    }
+
+    // Create the control BEFORE attempting playback. Browsers block audio that
+    // isn't tied to a direct user gesture, and previously the .catch() fired
+    // while _toggleBtn was still null — so the button was left showing "pause"
+    // for audio that never started. Now the button always exists to receive the
+    // correct state, and a tap starts the chant if autoplay was refused.
     _toggleBtn = _createToggleButton(label);
     document.body.appendChild(_toggleBtn);
+
+    const p = _audio.play();
+    if (p !== undefined) {
+      p.then(() => {
+        _fadeIn(_audio);
+        if (_toggleBtn) {
+          _toggleBtn.innerHTML = ICON_PAUSE + `<span>${label}</span>`;
+          _toggleBtn.setAttribute('aria-label', 'Pause ambient audio');
+        }
+      }).catch(() => {
+        if (_toggleBtn) {
+          _toggleBtn.innerHTML = ICON_PLAY + `<span>${label}</span>`;
+          _toggleBtn.setAttribute('aria-label', 'Play ambient audio');
+        }
+      });
+    }
   };
 
   window.stopCardAudio = function () {
