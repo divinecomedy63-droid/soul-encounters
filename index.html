@@ -1316,11 +1316,13 @@ body {
 
 .practice-label {
   font-family: 'Philosopher', sans-serif;
-  font-size: 0.7em;
-  letter-spacing: 0.2em;
+  font-size: 1.08em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 8px;
+  color: #f0e2b8;
+  margin-bottom: 10px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
 .practice-title {
@@ -1629,11 +1631,22 @@ body {
   text-align: center;
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  color: var(--parchment-dim);
-  margin: 10px 0;
-  font-size: 1.05em;
+  color: var(--parchment);
+  margin: 16px 0;
+  padding: 12px 10px;
+  font-size: 1.28em;
+  line-height: 1.5;
+  background: rgba(197,165,90,0.07);
+  border-top: 1px solid rgba(197,165,90,0.22);
+  border-bottom: 1px solid rgba(197,165,90,0.22);
 }
-.ps-season b { font-style: normal; color: var(--gold); font-weight: 600; }
+.ps-season b {
+  font-style: normal;
+  color: #f0e2b8;
+  font-weight: 700;
+  font-size: 1.06em;
+  letter-spacing: 0.02em;
+}
 .ps-steps { list-style: none; counter-reset: psstep; margin: 6px 0 0; padding: 0; }
 .ps-steps li {
   counter-increment: psstep;
@@ -2918,7 +2931,7 @@ body.modal-open #se-audio-toggle {
 
   <!-- The Reliquary — Two Paths Header -->
   <div class="reliquary-intro">
-    <div class="epilogue-card journey-entry-card unified-door" onclick="showScreen('journeyScreen')">
+    <div class="epilogue-card journey-entry-card unified-door" onclick="enterReliquary()">
       <span class="unified-door-candle">🕯️</span>
       <div class="epilogue-card-text">
         <div class="epilogue-card-title">Open the Reliquary</div>
@@ -4552,6 +4565,14 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+// The reliquary door. Starts the Gregorian chant so the ambient control is
+// available (and pausable) for the whole guided journey, not only when a
+// practice card happens to be tapped.
+function enterReliquary() {
+  showScreen('journeyScreen');
+  initCardAudio('Lux%20Aeterna%20in%20Aeternum.mp3', 'Chant');
+}
+
 // Card entry point: show the introduction unless the user has opted out.
 function enterPracticeFromCard(type) {
   let skip = false;
@@ -5015,7 +5036,18 @@ function openPractice(title, desc, type) {
   document.getElementById('practiceTitle').textContent = title;
   document.getElementById('practiceDescription').textContent = desc;
   const weekInfo = weekThemes.find(w => w.num === currentWeek);
-  document.getElementById('practiceCategoryLabel').textContent = weekInfo ? weekInfo.archetype : (practiceLabels[type] || 'Practice');
+  // Make each week visually distinct: show the theme, and for scripture-based
+  // practices the psalm too, so Week 2 reads "The Innocent \u00b7 Psalm 131"
+  // rather than looking identical to Week 1.
+  let categoryLabel;
+  if (weekInfo) {
+    categoryLabel = (type === 'psalmody' && weekInfo.psalm)
+      ? weekInfo.archetype + ' \u00b7 ' + weekInfo.psalm
+      : weekInfo.archetype;
+  } else {
+    categoryLabel = practiceLabels[type] || 'Practice';
+  }
+  document.getElementById('practiceCategoryLabel').textContent = categoryLabel;
   // Use week-specific content if available, fall back to generic guidance
   const weekContent = getWeekPracticeContent(currentWeek, type);
   if (weekContent) {
